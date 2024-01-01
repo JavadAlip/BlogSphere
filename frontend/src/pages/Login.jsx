@@ -5,6 +5,8 @@ import axios from 'axios';
 import { URL } from '../url';
 import { UserContext } from '../context/UserContext';
 
+
+
 const Login = () => {
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
@@ -33,7 +35,7 @@ const Login = () => {
         <input onChange={(e)=>setEmail(e.target.value)} className='w-full px-4 py-4 rounded-full border-2 border-black outline-0' type='text' placeholder='E-Mail'/>
         <input onChange={(e)=>setPassword(e.target.value)} className='w-full px-4 py-4 rounded-full border-2 border-black outline-0' type='text' placeholder='Password'/>
         <button onClick={handleLogin} className='w-full px-4 py-4 font-bold text-white hover:bg-gray-500 hover:text-black bg-black rounded-full'>login</button>
-        {error && <h3 className='text-red-500 text-sm'>Not match details!</h3>}
+        {error && <h3 className='text-red-500 text-sm'>Invalid email or password!</h3>}
         <div className='flex justify-center items-center space-x-2'>
           <p>Don't have an account?</p>
           <p className='text-gray-500 hover:text-black'><Link to="/register">Register</Link></p>
@@ -44,5 +46,4 @@ const Login = () => {
     </>
   );
 }
-
 export default Login;
