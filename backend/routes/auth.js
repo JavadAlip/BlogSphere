@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+const User = require('../models/User.js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -30,7 +30,7 @@ router.post('/login',async(req,res)=>{
         if(!match){
             return res.status(401).json("Wrong details!")
         }
-        const token=jwt.sign({id:user._id,username:user.username,email:user.email},process.env.SECRET,{expiresIn:"3d"})
+        const token=jwt.sign({_id:user._id,username:user.username,email:user.email},process.env.SECRET,{expiresIn:"3d"})
         const {password,...info}=user._doc
         res.cookie("Token",token).status(200).json(info)
         // res.status(200).json(user)
@@ -57,7 +57,7 @@ router.get("/refetch", (req,res)=>{
     const token=req.cookies.token
     jwt.verify(token, process.env.SECRET,{},async (err,data)=>{
         if(err){
-            return res.status(404).json(err)
+            
         }
         res.status(200).json(data)
     })
