@@ -4,9 +4,7 @@ import Footer from '../components/Footer';
 import axios from 'axios';
 import { URL } from '../url';
 import { UserContext } from '../context/UserContext';
-
-
-
+import logo from '/Blog-logo.png'
 const Login = () => {
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
@@ -26,7 +24,7 @@ const Login = () => {
   return (
     <>
     <div className='flex items-center justify-between px-6 md:px-[200px] py-4'>
-    <h1 className='text-lg md:text-xl font-extrabold '><Link to="/">BlogSphere</Link></h1>
+    <h1 className='text-lg md:text-xl font-extrabold'  style={{ marginLeft: '-37px' }}><Link to="/"><img src={logo}  style={{ height: '45px', width: '195px' }} alt="" /></Link></h1>
     <h3><Link to="/register">Register</Link> </h3>
     </div>
     <div className='w-full flex justify-center items-center h-[70vh] '>
@@ -42,7 +40,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-    <Footer/>
+    <Footer />
     </>
   );
 }
