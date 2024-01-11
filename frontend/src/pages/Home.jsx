@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import Loader from '../components/Loader';
 import { UserContext } from '../context/UserContext';
 import { URL } from '../url';
+import Pagination from '../components/Pagination';
 
 const Home = () => {
   const { search } = useLocation();
@@ -14,7 +15,9 @@ const Home = () => {
   const [noResults, setNoResults] = useState(false);
   const [loader, setLoader] = useState(false);
   const { user } = useContext(UserContext);
-  console.log(user);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage] = useState(8);
 
   const fetchPosts = async () => {
     setLoader(true);
@@ -38,6 +41,14 @@ const Home = () => {
     fetchPosts();
   }, [search]);
 
+  const lastPostIndex = currentPage * postPerPage;
+  const firstPostIndex = lastPostIndex - postPerPage;
+  const currentPost = posts.slice(firstPostIndex, lastPostIndex);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <>
       <Navbar />
@@ -47,14 +58,20 @@ const Home = () => {
             <Loader />
           </div>
         ) : !noResults ? (
-          posts.map((post) => (
-            <Link to={user ? `/posts/post/${post._id}` : '/login'}>
-              <HomePost  key={post._id} post={post} />
+          currentPost.map((post) => (
+            <Link to={user ? `/posts/post/${post._id}` : '/login'} key={post._id}>
+              <HomePost post={post} />
             </Link>
           ))
         ) : (
           <h3 className='text-center font-bold mt-16'>No blogs available!</h3>
         )}
+        <Pagination
+          totalPosts={posts.length}
+          postPerPage={postPerPage}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </div>
       <Footer />
     </>
@@ -62,3 +79,4 @@ const Home = () => {
 };
 
 export default Home;
+

@@ -98,7 +98,7 @@ const PostDetails = () => {
                 <p className='cursor-pointer' style={{ fontSize: '24px' }} onClick={() => navigate('/edit/' + postId)}>
                   <BiEdit />
                 </p>
-                <p className='cursor-pointer' onClick={handleDltPost} style={{ fontSize: '24px' }}>
+                <p className='cursor-pointer ' onClick={handleDltPost} style={{ fontSize: '24px' }}>
                   <MdDelete />
                 </p>
               </div>

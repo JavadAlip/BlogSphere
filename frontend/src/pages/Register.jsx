@@ -4,6 +4,9 @@ import Footer from '../components/Footer';
 import axios from 'axios';
 import { URL } from '../url.js';
 import logo from '/Blog-logo.png'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -15,6 +18,7 @@ const Register = () => {
   const usernameRegex = /^.{3,}$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex =/^.{8,}$/;
+
   const handleRegister = async () => {
     try {
       if (!username.match(usernameRegex)) {
@@ -39,6 +43,13 @@ const Register = () => {
         email,
         password,
       });
+      toast.success('Register Successful', {
+      position: toast.POSITION.TOP_CENTER,
+      });
+      setTimeout(() => {
+        window.location.href = '/login';
+      }, 3000);
+
       setUsername(res.data.username);
       setEmail(res.data.email);
       setPassword(res.data.password);
@@ -76,8 +87,9 @@ const Register = () => {
           <input
             onChange={(e) => setPassword(e.target.value)}
             className='w-full px-4 py-4 rounded-full border-2 border-black outline-0'
-            type='password'
+            type='text'
             placeholder='Password'
+
           />
           <button
             onClick={handleRegister}
@@ -85,6 +97,7 @@ const Register = () => {
           >
             Register
           </button>
+          <ToastContainer/>
           {error && <h3 className='text-red-500 text-sm'>{error}</h3>}
           <div className='flex justify-center items-center space-x-2'>
             <p>Already have an account?</p>

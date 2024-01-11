@@ -3,6 +3,7 @@ import { IMGFOLDER } from '../url'
 
 const HomePost = ({ post }) => {
   console.log(IMGFOLDER + post.photo);
+  
   return (
     <div className='w-full flex mt-8 space-x-4 '>
       {/* left */}
