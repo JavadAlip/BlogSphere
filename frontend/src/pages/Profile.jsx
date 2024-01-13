@@ -36,21 +36,27 @@ const Profile = () => {
 
   // profile delete
   const handleProfileDelete = async () => {
-    try {
-      const res = await axios.delete(URL + '/api/users/' + user._id, { withCredentials: true });
-      // Clear user state and any other client-side data
-      setUser(null);
-      // Clear the authentication cookie on the client-side
-      document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      navigate('/');
-      toast.error('Account Deleted!', {
-        position: toast.POSITION.TOP_CENTER,
-      });
-      setTimeout(() => {
-        window.location.href = '/';
-      }, 3000);
-    } catch (err) {
-      console.log(err);
+    // js alert 
+    const confirmed = window.confirm("Do you want to delete your account?");
+    if (confirmed) {
+      try {
+        const res = await axios.delete(URL + '/api/users/' + user._id, { withCredentials: true });
+        // Clear user state and any other client-side data
+        setUser(null);
+        // Clear the authentication cookie on the client-side
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        navigate('/');
+        toast.error('Account Deleted!', {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 3000);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      alert("Profile delete canceled.");
     }
   };
   
@@ -137,7 +143,6 @@ const Profile = () => {
                   Delete
                   <ToastContainer />
                 </button>
-
               )}
             </div>
             {successMessage && <p className='text-green-500 mt-4'>{successMessage}</p>}
@@ -150,3 +155,4 @@ const Profile = () => {
 };
 
 export default Profile;
+
