@@ -3,18 +3,18 @@ import { IMGFOLDER } from '../url';
 
 const HomePost = ({ post }) => {
   const [descriptionLimit, setDescriptionLimit] = useState(200);
-
+  const [titleLimit, setTitleLimit] = useState(80)
   useEffect(() => {
     const handleResize = () => {
       setDescriptionLimit(window.innerWidth <= 768 ? 70 : 200);
+      setTitleLimit(window.innerWidth <= 768 ? 80 : 80)
     };
+
 
     // Initial setup
     handleResize();
-
     // Listen for window resize events
     window.addEventListener('resize', handleResize);
-
     // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -30,7 +30,7 @@ const HomePost = ({ post }) => {
       {/* right */}
       <div className='flex-col flex w-[65%]'>
         <h1 className="text-xl font-bold md:mb-1 mb-1 md:text-2xl">
-          {post.title}
+          {post.title.slice(0, titleLimit)}
         </h1>
         <div className='flex mb-2 text-sm items-center justify-between text-gray-500 space-x-4 md:mb-4'>
           <p>@{post.username}</p>
