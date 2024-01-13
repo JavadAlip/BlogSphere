@@ -31,7 +31,10 @@ const PostDetails = () => {
     }
   };
 
+  // post delete
   const handleDltPost = async () => {
+    const confirmed=window.confirm("Do you want to delete your blog?")
+    if(confirmed){
     try {
       const res = await axios.delete(URL + '/api/posts/' + postId, {
         withCredentials: true,
@@ -41,6 +44,9 @@ const PostDetails = () => {
     } catch (err) {
       console.log(err);
     }
+  }else{
+    alert("Blog delete canceled.")
+  }
   };
 
   useEffect(() => {
