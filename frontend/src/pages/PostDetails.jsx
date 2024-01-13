@@ -76,7 +76,7 @@ const PostDetails = () => {
       console.log('comment posted', res.data);
       fetchPostComments(); // Refresh comments after posting
       setComment('');
-      window.location.reload(true)
+      window.location.reload(true);
       
     } catch (err) {
       console.log('Error posting comment:', err);
@@ -92,18 +92,16 @@ const PostDetails = () => {
         </div>
       ) : (
         <div className='px-8 md:px-[200px] mt-8 '>
-          {/* <div className='flex justify-between items-center'> */}
-            {user?._id == post?.userId && (
-              <div className='flex items-end justify-end space-x-2 bg-gray-50 p-1 rounded-lg'>
-                <p className='cursor-pointer' style={{ fontSize: '24px' }} onClick={() => navigate('/edit/' + postId)}>
-                  <BiEdit />
-                </p>
-                <p className='cursor-pointer ' onClick={handleDltPost} style={{ fontSize: '24px' }}>
-                  <MdDelete />
-                </p>
-              </div>
-            )}
-          {/* </div> */}
+          {user?._id == post?.userId && (
+            <div className='flex items-end justify-end space-x-2 bg-gray-50 p-1 rounded-lg'>
+              <p className='cursor-pointer' style={{ fontSize: '24px' }} onClick={() => navigate('/edit/' + postId)}>
+                <BiEdit />
+              </p>
+              <p className='cursor-pointer ' onClick={handleDltPost} style={{ fontSize: '24px' }}>
+                <MdDelete />
+              </p>
+            </div>
+          )}
           <h1 className='text-2xl font-bold md:text-3xl md:mt-6 text-black'>{post.title}</h1>
           <div className='flex items-center justify-between mt-2 md:mt-2 '>
             <p>@{post.username}</p>

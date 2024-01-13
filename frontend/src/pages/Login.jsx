@@ -19,7 +19,7 @@ const Login = () => {
     try {
       const res = await axios.post(URL + '/api/auth/login', { email, password }, { withCredentials: true });
       setUser(res.data);
-      toast.success('Login Successful', {
+      toast.success('Login Successfully!', {
         position: toast.POSITION.TOP_CENTER,
       });
       // Delay the redirection to ensure the toast is displayed before navigating

@@ -34,14 +34,25 @@ const CreatePost = () => {
         e.preventDefault();
 
         // regex on this page
-        const titleRegex = /^.{1,}$/;
+        // const titleRegex = /^.{1,}$/;
+        // if (!title.match(titleRegex)) {
+        //     setError('Title is empty!');
+        //     return;
+        // }
+        // const descRegex = /^.{1,}$/;
+        // if (!description.match(descRegex)) {
+        //     setError('Description is empty!');
+        //     return;
+        // }
+        const titleRegex = /\S.*\S/;
         if (!title.match(titleRegex)) {
-            setError('Title is empty!');
+            setError('Title is empty or contains only whitespace!');
             return;
         }
-        const descRegex = /^.{1,}$/;
+
+        const descRegex = /\S.*\S/;
         if (!description.match(descRegex)) {
-            setError('Description is empty!');
+            setError('Description is empty or contains only whitespace!');
             return;
         }
 
@@ -52,6 +63,7 @@ const CreatePost = () => {
             userId: user._id,
             categories: cats,
         };
+        
         if (file) {
             const data = new FormData();
             const filename = Date.now() + file.name;
@@ -118,7 +130,7 @@ const CreatePost = () => {
                         rows={15}
                         cols={30}
                         placeholder='Blog description'
-                        className='px-4 py-2 outline-none bg-gray-100 rounded-lg'/>
+                        className='px-4 py-2 outline-none bg-gray-100 rounded-lg' />
                     {error && <p className='text-red-500'>{error}</p>}
                     <button
                         onClick={handleCreate}

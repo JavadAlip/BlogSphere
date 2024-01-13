@@ -29,6 +29,7 @@ const EditPost = () => {
     useEffect(() => {
         fetchPost()
     }, [postId])
+
     // edit or update post
     const handleUpdate = async (e) => {
         e.preventDefault()
@@ -54,6 +55,7 @@ const EditPost = () => {
                 console.log(err);
             }
         }
+        
         // upload post
         try {
             const res = await axios.put(URL + "/api/posts/" + postId, post, { withCredentials: true })

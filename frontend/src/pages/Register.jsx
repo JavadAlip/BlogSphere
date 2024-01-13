@@ -43,7 +43,7 @@ const Register = () => {
         email,
         password,
       });
-      toast.success('Register Successful', {
+      toast.success('Register Successfully!', {
       position: toast.POSITION.TOP_CENTER,
       });
       setTimeout(() => {

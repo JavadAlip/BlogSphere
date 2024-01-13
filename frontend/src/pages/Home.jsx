@@ -16,6 +16,7 @@ const Home = () => {
   const [loader, setLoader] = useState(false);
   const { user } = useContext(UserContext);
 
+  //  pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(8);
 
@@ -44,7 +45,6 @@ const Home = () => {
   const lastPostIndex = currentPage * postPerPage;
   const firstPostIndex = lastPostIndex - postPerPage;
   const currentPost = posts.slice(firstPostIndex, lastPostIndex);
-
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -64,7 +64,7 @@ const Home = () => {
             </Link>
           ))
         ) : (
-          <h3 className='text-center font-bold mt-16'>No blogs available!</h3>
+          <h3 className='text-center font-bold mt-16'>Sorry, no blogs found. 😢</h3>
         )}
         <Pagination
           totalPosts={posts.length}
