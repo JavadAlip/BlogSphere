@@ -18,9 +18,22 @@ const Profile = () => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
 
+    // regex to profile details
+    const usernameRegex = /^.{3,}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   // profile update
   const handleProfileUpdate = async () => {
     try {
+      if (!username.match(usernameRegex) || /\s/.test(username)) {
+        setError('Username at least 3 characters & cannot contain whitespace!');
+        return;
+      }
+
+      if (!email.match(emailRegex) || /\s/.test(email)) {
+        setError('Invalid email address!');
+        return;
+      }
       const res = await axios.put(
         URL + '/api/users/' + user._id,
         { username, email },
@@ -29,6 +42,7 @@ const Profile = () => {
       console.log(res.data);
       setSuccessMessage('Profile updated successfully!');
       setTimeout(() => setSuccessMessage(''), 2000);
+      setError(false);
     } catch (err) {
       console.error(err);
     }
@@ -67,6 +81,7 @@ const Profile = () => {
       setUsername(res.data.username);
       setEmail(res.data.email);
     } catch (err) {
+      setError(true);
       console.log(err);
     }
   };

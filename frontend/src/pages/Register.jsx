@@ -17,24 +17,22 @@ const Register = () => {
   // regex to auth details
   const usernameRegex = /^.{3,}$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordRegex =/^.{8,}$/;
+  const passwordRegex = /^.{8,}$/;
 
   const handleRegister = async () => {
     try {
-      if (!username.match(usernameRegex)) {
-        setError('Username should be 3 characters!');
+      if (!username.match(usernameRegex) || /\s/.test(username)) {
+        setError('Username at least 3 characters & cannot contain whitespace!');
         return;
       }
 
-      if (!email.match(emailRegex)) {
+      if (!email.match(emailRegex) || /\s/.test(email)) {
         setError('Invalid email address!');
         return;
       }
 
-      if (!password.match(passwordRegex)) {
-        setError(
-          'Password should be at least 8 characters!'
-        );
+      if (!password.match(passwordRegex) || /\s/.test(password)) {
+        setError('Password at least 8 characters & cannot contain whitespace!');
         return;
       }
 
@@ -44,7 +42,7 @@ const Register = () => {
         password,
       });
       toast.success('Register Successfully!', {
-      position: toast.POSITION.TOP_CENTER,
+        position: toast.POSITION.TOP_CENTER,
       });
       setTimeout(() => {
         window.location.href = '/login';
@@ -64,7 +62,7 @@ const Register = () => {
   return (
     <>
       <div className='flex items-center justify-between px-6 md:px-[200px] py-4'>
-      <h1 className='text-lg md:text-xl font-extrabold'  style={{ marginLeft: '-37px' }}><Link to="/"><img src={logo}  style={{ height: '45px', width: '195px' }} alt="" /></Link></h1>
+        <h1 className='text-lg md:text-xl font-extrabold' style={{ marginLeft: '-37px' }}><Link to="/"><img src={logo} style={{ height: '45px', width: '195px' }} alt="" /></Link></h1>
         <h3>
           <Link to="/login">Login</Link>
         </h3>
@@ -97,7 +95,7 @@ const Register = () => {
           >
             Register
           </button>
-          <ToastContainer/>
+          <ToastContainer />
           {error && <h3 className='text-red-500 text-sm'>{error}</h3>}
           <div className='flex justify-center items-center space-x-2'>
             <p>Already have an account?</p>
