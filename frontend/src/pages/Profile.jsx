@@ -17,6 +17,7 @@ const Profile = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
+  const [error,setError]=useState('')
 
     // regex to profile details
     const usernameRegex = /^.{3,}$/;
@@ -26,7 +27,7 @@ const Profile = () => {
   const handleProfileUpdate = async () => {
     try {
       if (!username.match(usernameRegex) || /\s/.test(username)) {
-        setError('Username at least 3 characters & cannot contain whitespace!');
+        setError("Username at least 3 characters & can't contain whitespace!");
         return;
       }
 
@@ -144,12 +145,14 @@ const Profile = () => {
               type='email'
             />
             <div className='flex items-center space-x-4 mt-8'>
+            
               <button
                 onClick={handleProfileUpdate}
                 className='text-white rounded-lg font-semibold py-2 hover:text-black hover:bg-gray-400 bg-black px-4'
               >
                 Update
               </button>
+              
               {user && (
                 <button
                   onClick={handleProfileDelete}
@@ -160,6 +163,7 @@ const Profile = () => {
                 </button>
               )}
             </div>
+            {error && <p className='text-red-500'>{error}</p>}
             {successMessage && <p className='text-green-500 mt-4'>{successMessage}</p>}
           </div>
         </div>

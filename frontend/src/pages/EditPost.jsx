@@ -15,6 +15,7 @@ const EditPost = () => {
     const postId = useParams().id
     const { user } = useContext(UserContext)
     const navigate = useNavigate()
+    const [error, setError] = useState('');
     const fetchPost = async () => {
         try {
             const res = await axios.get(URL + "/api/posts/" + postId)
@@ -33,6 +34,19 @@ const EditPost = () => {
     // edit or update post
     const handleUpdate = async (e) => {
         e.preventDefault()
+
+        // regex edit / update blog
+        const titleRegex = /\S.*\S/;
+        if (!title.match(titleRegex)) {
+            setError('Title is empty or contains only whitespace!');
+            return;
+        }
+        const descRegex = /\S.*\S/;
+        if (!description.match(descRegex)) {
+            setError('Description is empty or contains only whitespace!');
+            return;
+        }
+
         const post = {
             title,
             description,
@@ -55,7 +69,7 @@ const EditPost = () => {
                 console.log(err);
             }
         }
-        
+
         // upload post
         try {
             const res = await axios.put(URL + "/api/posts/" + postId, post, { withCredentials: true })
@@ -80,7 +94,7 @@ const EditPost = () => {
         <div>
             <Navbar />
             <div className='px-6 md:px-[200px] mt-8'>
-                <h1 className='font-bold mt-8 md:text-2xl text-xl '>Edit</h1>
+                <h1 className='font-bold mt-8 md:text-2xl text-xl '>Edit blog:</h1>
                 <form action='' className='w-full flex mt-4 flex-col space-y-4 md:space-y-8'>
                     <input onChange={(e) => setTitle(e.target.value)} value={title} className='px-4 py-2 outline-none' placeholder='Blog title' type='text' />
                     <input onChange={(e) => setFile(e.target.files[0])} className='px-4 ' type='file' />
@@ -108,6 +122,8 @@ const EditPost = () => {
                         </div>
                     </div>
                     <textarea onChange={(e) => setDesc(e.target.value)} value={description} rows={15} cols={30} placeholder='Blog description' className='px-4 py-2 outline-none  bg-gray-100 rounded-lg' />
+                     {/* Display error message */}
+                     {error && <p className='text-red-500'>{error}</p>}
                     <button onClick={handleUpdate} className='bg-black rounded-lg w-full mdLw-[20%] px-4 py-2 md:text-xl text-lg mx-auto text-white font-semibold '>Update</button>
                 </form>
             </div>
