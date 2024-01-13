@@ -1,5 +1,4 @@
 import React from 'react'
-
 const Loader = () => {
   return (
     <div role="status">
@@ -10,5 +9,4 @@ const Loader = () => {
     </div>
   )
 }
-
 export default Loader

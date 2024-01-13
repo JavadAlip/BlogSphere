@@ -1,5 +1,3 @@
-
-// ProfilePosts.js
 import React from 'react';
 import { IMGFOLDER } from '../url';
 

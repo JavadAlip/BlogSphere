@@ -1,9 +1,26 @@
-import React from 'react'
-import { IMGFOLDER } from '../url'
+import React, { useState, useEffect } from 'react';
+import { IMGFOLDER } from '../url';
 
 const HomePost = ({ post }) => {
-  console.log(IMGFOLDER + post.photo);
-  
+  const [descriptionLimit, setDescriptionLimit] = useState(200);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setDescriptionLimit(window.innerWidth <= 768 ? 70 : 200);
+    };
+
+    // Initial setup
+    handleResize();
+
+    // Listen for window resize events
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className='w-full flex mt-8 space-x-4 '>
       {/* left */}
@@ -22,9 +39,12 @@ const HomePost = ({ post }) => {
             <p>-{new Date(post.updatedAt).toString().slice(15, 21)}</p>
           </div>
         </div>
-        <p className='texr-sm md:text-lg '>{post.description.slice(0, 200)} <span style={{ color: 'grey', fontSize: 'medium' }}> Read more...</span></p>
+        <p className='text-sm md:text-lg'>
+          {post.description.slice(0, descriptionLimit)} <span style={{ color: 'grey', fontSize: 'medium' }}> Read more...</span>
+        </p>
       </div>
     </div>
-  )
-}
-export default HomePost
+  );
+};
+
+export default HomePost;

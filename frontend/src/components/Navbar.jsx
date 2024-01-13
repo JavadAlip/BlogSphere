@@ -16,7 +16,6 @@ const Navbar = () => {
     const path = useLocation().pathname;
     const { user } = useContext(UserContext);
     const { setUser } = useContext(UserContext)
-
     const [username, setUsername] = useState('');
     const param = useParams().id;
 
@@ -24,14 +23,12 @@ const Navbar = () => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 0);
         };
-
         window.addEventListener('scroll', handleScroll);
-
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
-    
+
     // fetch username in navabar when who
     const fetchProfile = async () => {
         try {
@@ -45,7 +42,6 @@ const Navbar = () => {
             console.log(err);
         }
     };
-    ;
 
     useEffect(() => {
         fetchProfile();
@@ -53,6 +49,7 @@ const Navbar = () => {
     const showMenu = () => {
         setMenu(!menu);
     };
+
     return (
         <div
             className={`flex items-center justify-between px-6 md:px-[200px] py-4 ${isScrolled ? 'fixed top-0 left-0 w-full bg-white shadow-md' : ''
@@ -80,18 +77,17 @@ const Navbar = () => {
             )}
 
             <div className='md:flex hidden items-center justify-center space-x-2 md:space-x-4'>
-
-                {user ? 
+                {user ?
                     // <h3>
                     //     {' '}
                     //     <Link to='/create'>Logout</Link>
                     // </h3>
                     <h3>{username}</h3>
-                 : (
-                    <h3>
-                        <Link to='/login'>Login</Link>{' '}
-                    </h3>
-                )}
+                    : (
+                        <h3>
+                            <Link to='/login'>Login</Link>{' '}
+                        </h3>
+                    )}
                 {user ? (
                     <div onClick={showMenu}>
                         <p className='cursor-pointer relative'>
