@@ -19,12 +19,8 @@ app.use(cookieParser());
 app.use('/images',express.static(path.join(__dirname,"/images")))
 // app.use(cors({ origin: "https://poetic-sawine-c2aa8f.netlify.app", credentials: true }));
 
-app.use(cors({
-    origin: "https://blogsphere-mr0r.onrender.com",
-    credentials: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    allowedHeaders: "Content-Type,Authorization",
-}));
+// app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "https://blog-sphere-eboz.vercel.app", credentials: true }));
 
 // Database
 const connectDB = async () => {
@@ -65,7 +61,7 @@ connectDB().then(() => {
     app.use('/api/comments', commentRoute);
 
     // Start the server
-    const PORT = process.env.PORT || 5000;
+    const PORT = process.env.PORT || 10000;
     app.listen(PORT, () => {
         console.log(`App is running on port ${PORT}`);
     });
