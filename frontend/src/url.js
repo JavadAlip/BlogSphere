@@ -1,2 +1,2 @@
-export const URL="http://localhost:5000"
-export const IMGFOLDER="http://localhost:5000/images/"
+export const URL="https://blogsphere-mr0r.onrender.com"
+export const IMGFOLDER="https://blogsphere-mr0r.onrender.com/images/"
