@@ -20,7 +20,7 @@ app.use('/images',express.static(path.join(__dirname,"/images")))
 // app.use(cors({ origin: "https://poetic-sawine-c2aa8f.netlify.app", credentials: true }));
 
 app.use(cors({
-    origin: "https://blog-sphere-eboz.vercel.app",
+    origin: "https://blogsphere-mr0r.onrender.com",
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     allowedHeaders: "Content-Type,Authorization",
