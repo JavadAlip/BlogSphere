@@ -1,3 +1,2 @@
-export const URL="http://localhost:10000"
-export const IMGFOLDER="http://localhost:10000/images/"
-
+export const URL="https://blogsphere-o6fp.onrender.com";
+export const IMGFOLDER="https://blogsphere-o6fp.onrender.com/images/";
