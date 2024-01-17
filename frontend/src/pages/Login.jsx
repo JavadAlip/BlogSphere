@@ -19,13 +19,14 @@ const Login = () => {
     try {
       const res = await axios.post(URL + '/api/auth/login', { email, password }, { withCredentials: true });
       setUser(res.data);
+      console.log(res.data)
       toast.success('Login Successfully!', {
         position: toast.POSITION.TOP_CENTER,
       });
       // Delay the redirection to ensure the toast is displayed before navigating
       setTimeout(() => {
         window.location.href = '/';
-      }, 3000); // Adjust the delay as needed
+      }, 3000); 
     } catch (err) {
       setError(true);
       console.error(err);
