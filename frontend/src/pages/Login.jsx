@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import axios from 'axios';
-import { URL } from '../url';
 import { UserContext } from '../context/UserContext';
 import logo from '/Blog-logo.png';
 import { ToastContainer, toast } from 'react-toastify';
@@ -17,7 +16,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post(URL + '/api/auth/login', { email, password }, { withCredentials: true });
+      const res = await axios.post('https://blogsphere-o6fp.onrender.com/api/auth/login', { email, password }, { withCredentials: true });
       setUser(res.data);
       console.log(res.data)
       toast.success('Login Successfully!', {
