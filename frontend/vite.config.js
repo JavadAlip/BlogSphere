@@ -10,13 +10,20 @@
 // })
 
 
-// vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 export default defineConfig({
   build: {
     outDir: 'frontend', // Output directory for the build artifacts
-    plugins: [react()], // Plugins to use during the build process, in this case, the React plugin
+    plugins: [react()],
+    define: {
+      'process.env.VITE_URL': JSON.stringify(process.env.VITE_URL),
+      'process.env.VITE_IMGFOLDER': JSON.stringify(process.env.VITE_IMGFOLDER),
+    },
   },
 });
