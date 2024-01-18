@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import axios from 'axios';
+import { URL } from '../url.js';
 import logo from '/Blog-logo.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -35,7 +36,7 @@ const Register = () => {
         return;
       }
 
-      const res = await axios.post('https://blogsphere-o6fp.onrender.com/api/auth/register', {
+      const res = await axios.post(URL + '/api/auth/register', {
         username,
         email,
         password,
