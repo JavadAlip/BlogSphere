@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { MdDelete } from 'react-icons/md';
 import axios from 'axios';
-import { URL } from '../url';
+import {q } from '../url';
 import { UserContext } from '../context/UserContext';
 
 const Comment = ({ c, post }) => {
@@ -9,7 +9,7 @@ const Comment = ({ c, post }) => {
 
   const deleteComment = async () => {
     try {
-      const res = await axios.delete(`${URL}/api/comments/${c._id}`, { withCredentials: true });
+      const res = await axios.delete(`${q}/api/comments/${c._id}`, { withCredentials: true });
       console.log("Comment deleted", res);
       // Add any additional logic after deleting the comment
       window.location.reload(true);

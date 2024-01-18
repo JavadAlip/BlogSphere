@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ImCross } from 'react-icons/im';
-import { URL } from '../url';
+import { q } from '../url';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
@@ -18,7 +18,7 @@ const EditPost = () => {
     const [error, setError] = useState('');
     const fetchPost = async () => {
         try {
-            const res = await axios.get(URL + "/api/posts/" + postId)
+            const res = await axios.get(q + "/api/posts/" + postId)
             setTitle(res.data.title)
             setDesc(res.data.description)
             setFile(res.data.photo)
@@ -63,7 +63,7 @@ const EditPost = () => {
 
             // upload img
             try {
-                const imgUpload = await axios.post(URL + "/api/upload", data)
+                const imgUpload = await axios.post(q + "/api/upload", data)
                 console.log(imgUpload.data);
             } catch (err) {
                 console.log(err);
@@ -72,7 +72,7 @@ const EditPost = () => {
 
         // upload post
         try {
-            const res = await axios.put(URL + "/api/posts/" + postId, post, { withCredentials: true })
+            const res = await axios.put(q + "/api/posts/" + postId, post, { withCredentials: true })
             navigate("/posts/post/" + res.data._id)
             console.log(res.data);
         } catch (err) {

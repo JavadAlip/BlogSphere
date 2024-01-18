@@ -5,7 +5,7 @@ import { BiEdit } from 'react-icons/bi';
 import { MdDelete } from 'react-icons/md';
 import Comment from '../components/Comment';
 import { useNavigate, useParams } from 'react-router-dom';
-import { URL, IMGFOLDER } from '../url';
+import { q, pa } from '../url';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 import Loader from '../components/Loader';
@@ -22,7 +22,7 @@ const PostDetails = () => {
   const fetchPost = async () => {
     setLoader(true);
     try {
-      const res = await axios.get(URL + '/api/posts/' + postId);
+      const res = await axios.get(q + '/api/posts/' + postId);
       setPost(res.data);
       setLoader(false);
     } catch (err) {
@@ -36,7 +36,7 @@ const PostDetails = () => {
     const confirmed=window.confirm("Do you want to delete your blog?")
     if(confirmed){
     try {
-      const res = await axios.delete(URL + '/api/posts/' + postId, {
+      const res = await axios.delete(q + '/api/posts/' + postId, {
         withCredentials: true,
       });
       console.log(res.data);
@@ -55,7 +55,7 @@ const PostDetails = () => {
 
   const fetchPostComments = async () => {
     try {
-      const res = await axios.get(URL + '/api/comments/post/' + postId);
+      const res = await axios.get(q + '/api/comments/post/' + postId);
       setComments(res.data);
     } catch (err) {
       console.log(err);
@@ -70,7 +70,7 @@ const PostDetails = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        URL + '/api/comments/create',
+        q + '/api/comments/create',
         {
           comment: comment,
           author: user.username,
@@ -116,7 +116,7 @@ const PostDetails = () => {
               <p>-{new Date(post.updatedAt).toString().slice(15, 21)}</p>
             </div>
           </div>
-          <img src={IMGFOLDER + post.photo} alt='' className='w-full mx-auto md:mt-2 mt-4 rounded-lg'/>
+          <img src={pa + post.photo} alt='' className='w-full mx-auto md:mt-2 mt-4 rounded-lg'/>
           <p className='mx-auto mt-4 md:mt-4 '>{post.description}</p>
           <div className='flex items-center mt-4 space-x-4 font-semibold'>
             <p>Categories :</p>

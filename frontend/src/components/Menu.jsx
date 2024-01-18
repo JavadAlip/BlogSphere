@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
-import { URL } from '../url'
+import { q } from '../url'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
@@ -12,7 +12,7 @@ const Menu = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.get(URL + "/api/auth/logout", { withCredentials: true })
+      const res = await axios.get(q + "/api/auth/logout", { withCredentials: true })
       //  console.log(res)
       setUser(null)
       toast.error('Logout Successfully!', {
