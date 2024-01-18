@@ -4,7 +4,6 @@ import { FaSearch, FaBars } from 'react-icons/fa';
 import Menu from './Menu';
 import { UserContext } from '../context/UserContext';
 import logo from '/Blog-logo.png';
-import { q } from '../url';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
@@ -33,7 +32,7 @@ const Navbar = () => {
     const fetchProfile = async () => {
         try {
             if (user && user._id) {
-                const res = await axios.get(q + '/api/users/' + user._id);
+                const res = await axios.get(`${import.meta.env.VITE_URL}/api/users/` + user._id);
                 setUsername(res.data.username);
                 // setPassword(res.data.password);
                 console.log("kittiye", user.data)

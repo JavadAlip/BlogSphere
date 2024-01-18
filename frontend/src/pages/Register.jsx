@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import axios from 'axios';
-import { q } from '../url.js';
 import logo from '/Blog-logo.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -36,7 +35,7 @@ const Register = () => {
         return;
       }
 
-      const res = await axios.post(q + '/api/auth/register', {
+      const res = await axios.post(`${import.meta.env.VITE_URL}/api/auth/register`, {
         username,
         email,
         password,

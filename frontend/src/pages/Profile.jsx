@@ -4,7 +4,6 @@ import Footer from '../components/Footer';
 import ProfilePosts from '../components/ProfilePosts';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
-import { q } from '../url';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -36,7 +35,7 @@ const Profile = () => {
         return;
       }
       const res = await axios.put(
-        q + '/api/users/' + user._id,
+        `${import.meta.env.VITE_URL}/api/users/` + user._id,
         { username, email },
         { withCredentials: true }
       );
@@ -55,7 +54,7 @@ const Profile = () => {
     const confirmed = window.confirm("Do you want to delete your account?");
     if (confirmed) {
       try {
-        const res = await axios.delete(q + '/api/users/' + user._id, { withCredentials: true });
+        const res = await axios.delete(`${import.meta.env.VITE_URL}/api/users/` + user._id, { withCredentials: true });
         // Clear user state and any other client-side data
         setUser(null);
         // Clear the authentication cookie on the client-side
@@ -78,7 +77,7 @@ const Profile = () => {
   // user profile details fetch
   const fetchProfile = async () => {
     try {
-      const res = await axios.get(q + '/api/users/' + id);
+      const res = await axios.get(`${import.meta.env.VITE_URL}/api/users/` + id);
       setUsername(res.data.username);
       setEmail(res.data.email);
     } catch (err) {
@@ -96,8 +95,8 @@ const Profile = () => {
   // user posts fetch
   const fetchUserPost = async () => {
     try {
-      console.log('URL:', q);
-      const res = await axios.get(q + '/api/posts/user/' + id);
+      console.log(`URL:, ${import.meta.env.VITE_URL}`);
+      const res = await axios.get(`${import.meta.env.VITE_URL}/api/posts/user/` + id);
       console.log('cooommmmm', res.data);
       setPosts(res.data);
     } catch (err) {

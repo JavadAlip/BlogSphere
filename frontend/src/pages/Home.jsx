@@ -6,7 +6,6 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader';
 import { UserContext } from '../context/UserContext';
-import { q } from '../url';
 import Pagination from '../components/Pagination';
 
 const Home = () => {
@@ -23,7 +22,7 @@ const Home = () => {
   const fetchPosts = async () => {
     setLoader(true);
     try {
-      const res = await axios.get(q + "/api/posts/" + search);
+      const res = await axios.get(`${import.meta.env.VITE_URL}/api/posts/`+ search);
       setPosts(res.data);
       if (res.data.length === 0) {
         setNoResults(true);

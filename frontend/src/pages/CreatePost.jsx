@@ -4,7 +4,6 @@ import Footer from '../components/Footer';
 import { ImCross } from 'react-icons/im';
 import { UserContext } from '../context/UserContext';
 import axios from 'axios';
-import { q } from '../url';
 import { Navigate, useNavigate } from 'react-router-dom';
 
 const CreatePost = () => {
@@ -73,7 +72,7 @@ const CreatePost = () => {
 
             // upload img
             try {
-                const imgUpload = await axios.post(q + '/api/upload', data);
+                const imgUpload = await axios.post(`${import.meta.env.VITE_URL}/api/upload`, data);
                 console.log(imgUpload.data);
             } catch (err) {
                 console.log(err);
@@ -82,7 +81,7 @@ const CreatePost = () => {
 
         // upload post
         try {
-            const res = await axios.post(q + '/api/posts/create', post, { withCredentials: true });
+            const res = await axios.post(`${import.meta.env.VITE_URL}/api/posts/create`, post, { withCredentials: true });
             navigate('/posts/post/' + res.data._id);
             console.log(res.data);
         } catch (err) {

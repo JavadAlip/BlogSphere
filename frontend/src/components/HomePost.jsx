@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { pa } from '../url';
 
 const HomePost = ({ post }) => {
   const [descriptionLimit, setDescriptionLimit] = useState(200);
@@ -25,7 +24,7 @@ const HomePost = ({ post }) => {
     <div className='w-full flex mt-8 space-x-4 '>
       {/* left */}
       <div className='w-[35%] h-[200px] flex justify-center items-center'>
-        <img src={pa + post.photo} alt="" className='h-full w-full rounded-lg object-cover' />
+        <img src={import.meta.env.VITE_IMGFOLDER + post.photo} alt="" className='h-full w-full rounded-lg object-cover' />
       </div>
       {/* right */}
       <div className='flex-col flex w-[65%]'>
