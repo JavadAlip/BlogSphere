@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use('/images',express.static(path.join(__dirname,"/images")))
 
 
-app.use(cors({ origin: "https://rad-pony-fe8399.netlify.app", credentials: true }));
+app.use(cors({ origin: "blog-app-tan-phi.vercel.app", credentials: true }));
 
 
 // Database
