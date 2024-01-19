@@ -5,7 +5,7 @@ const ProfilePosts = ({ p }) => {
     <div className='w-full flex mt-8 space-x-4 '>
       {/* left */}
       <div className='w-[35%] h-[200px] flex justify-center items-center'>
-        <img src={import.meta.env.VITE_IMGFOLDER + p.photo} alt="" className='h-full w-full object-cover rounded-lg' />
+        <img src={"https://blogsphere-backend.onrender.com/images/"+p.photo} alt="" className='h-full w-full object-cover rounded-lg' />
       </div>
       {/* right */}
       <div className='flex-col flex w-[65%]'>

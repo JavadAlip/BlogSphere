@@ -72,7 +72,7 @@ const CreatePost = () => {
 
             // upload img
             try {
-                const imgUpload = await axios.post(`${import.meta.env.VITE_URL}/api/upload`, data);
+                const imgUpload = await axios.post('https://blogsphere-backend.onrender.com/api/upload', data);
                 console.log(imgUpload.data);
             } catch (err) {
                 console.log(err);
@@ -81,7 +81,7 @@ const CreatePost = () => {
 
         // upload post
         try {
-            const res = await axios.post(`${import.meta.env.VITE_URL}/api/posts/create`, post, { withCredentials: true });
+            const res = await axios.post('https://blogsphere-backend.onrender.com/api/posts/create', post, { withCredentials: true });
             navigate('/posts/post/' + res.data._id);
             console.log(res.data);
         } catch (err) {

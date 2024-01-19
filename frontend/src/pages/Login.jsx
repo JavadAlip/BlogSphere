@@ -16,7 +16,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post(`${import.meta.env.VITE_URL}/api/auth/login`, { email, password }, { withCredentials: true });
+      const res = await axios.post('https://blogsphere-backend.onrender.com/api/auth/login',{ email, password },{ withCredentials: true });
       setUser(res.data);
       console.log(res.data)
       toast.success('Login Successfully!', {

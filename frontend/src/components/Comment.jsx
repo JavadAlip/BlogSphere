@@ -8,7 +8,7 @@ const Comment = ({ c, post }) => {
 
   const deleteComment = async () => {
     try {
-      const res = await axios.delete(`${import.meta.env.VITE_URL}/api/comments/${c._id}`, { withCredentials: true });
+      const res = await axios.delete(`https://blogsphere-backend.onrender.com/api/comments/${c._id}`, { withCredentials: true });
       console.log("Comment deleted", res);
       // Add any additional logic after deleting the comment
       window.location.reload(true);

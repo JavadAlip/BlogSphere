@@ -32,7 +32,7 @@ const Navbar = () => {
     const fetchProfile = async () => {
         try {
             if (user && user._id) {
-                const res = await axios.get(`${import.meta.env.VITE_URL}/api/users/` + user._id);
+                const res = await axios.get('https://blogsphere-backend.onrender.com/api/users/' + user._id);
                 setUsername(res.data.username);
                 // setPassword(res.data.password);
                 console.log("kittiye", user.data)

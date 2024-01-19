@@ -35,7 +35,7 @@ const Register = () => {
         return;
       }
 
-      const res = await axios.post(`${import.meta.env.VITE_URL}/api/auth/register`, {
+      const res = await axios.post('https://blogsphere-backend.onrender.com/api/auth/register', {
         username,
         email,
         password,

@@ -36,8 +36,8 @@ export function UserContextProvider({ children }) {
 
     const getUser = async () => {
         try {
-            console.log('VITE_URL:', import.meta.env.VITE_URL);
-            const res = await axios.get(`${import.meta.env.VITE_URL}/api/auth/refetch`, { withCredentials: true });
+            // console.log('VITE_URL:', import.meta.env.VITE_URL);
+            const res = await axios.get('https://blogsphere-backend.onrender.com/api/auth/refetch', { withCredentials: true });
             console.log("Response from getUser:", res.data);
             setUser(res.data);
         } catch (err) {
