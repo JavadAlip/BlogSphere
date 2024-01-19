@@ -48,7 +48,7 @@ const PostDetails = () => {
   }
   };
 
-  useEffect(() => {z
+  useEffect(() => {
     fetchPost();
   }, [postId]);
 
