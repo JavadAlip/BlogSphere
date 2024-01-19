@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use('/images',express.static(path.join(__dirname,"/images")))
 
 
-app.use(cors({ origin:"https://blog-sphere-lac.vercel.app", credentials: true }));
+app.use(cors({ origin:"https://resplendent-pie-c0bf03.netlify.app", credentials: true }));
 
 
 // Database
