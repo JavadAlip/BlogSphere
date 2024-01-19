@@ -62,7 +62,7 @@ const EditPost = () => {
 
             // upload img
             try {
-                const imgUpload = await axios.post(`${process.env.URL} /api/upload`, data)
+                const imgUpload = await axios.post(`${import.meta.env.VITE_URL} /api/upload`, data)
                 console.log(imgUpload.data);
             } catch (err) {
                 console.log(err);
@@ -71,7 +71,7 @@ const EditPost = () => {
 
         // upload post
         try {
-            const res = await axios.put(`${process.env.URL}/api/posts/` + postId, post, { withCredentials: true })
+            const res = await axios.put(`${import.meta.env.VITE_URL}/api/posts/` + postId, post, { withCredentials: true })
             navigate("/posts/post/" + res.data._id)
             console.log(res.data);
         } catch (err) {

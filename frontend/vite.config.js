@@ -16,7 +16,6 @@ import dotenv from 'dotenv';
 
 // Load environment variables from .env file
 dotenv.config();
-
 export default defineConfig({
   build: {
     outDir: 'frontend', // Output directory for the build artifacts

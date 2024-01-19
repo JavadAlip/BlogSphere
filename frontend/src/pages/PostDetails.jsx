@@ -35,7 +35,7 @@ const PostDetails = () => {
     const confirmed=window.confirm("Do you want to delete your blog?")
     if(confirmed){
     try {
-      const res = await axios.delete(`${import.meta.env.VITE_URL} /api/posts/`+ postId, {
+      const res = await axios.delete(`${import.meta.env.VITE_URL}/api/posts/`+ postId, {
         withCredentials: true,
       });
       console.log(res.data);
@@ -115,7 +115,7 @@ const PostDetails = () => {
               <p>-{new Date(post.updatedAt).toString().slice(15, 21)}</p>
             </div>
           </div>
-          <img src={process.env.IMGFOLDER+ post.photo} alt='' className='w-full mx-auto md:mt-2 mt-4 rounded-lg'/>
+          <img src={import.meta.env.IMGFOLDER+post.photo} alt='' className='w-full mx-auto md:mt-2 mt-4 rounded-lg'/>
           <p className='mx-auto mt-4 md:mt-4 '>{post.description}</p>
           <div className='flex items-center mt-4 space-x-4 font-semibold'>
             <p>Categories :</p>

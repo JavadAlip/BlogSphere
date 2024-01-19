@@ -38,7 +38,7 @@ export function UserContextProvider({ children }) {
             console.log("Response from getUser:", res.data);
             setUser(res.data);
         } catch (err) {
-            console.error("Error in getUser:", err);
+            console.log(err);
         }
     };
 
