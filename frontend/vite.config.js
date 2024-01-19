@@ -18,7 +18,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 export default defineConfig({
   build: {
-    outDir: 'frontend', // Output directory for the build artifacts
+    outDir: 'dist', // Output directory for the build artifacts
     plugins: [react()],
     define: {
       'process.env.VITE_URL': JSON.stringify(process.env.VITE_URL),
