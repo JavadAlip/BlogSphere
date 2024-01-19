@@ -11,7 +11,7 @@ const Menu = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.get('https://blogsphere-backend.onrender.com/api/auth/logout', { withCredentials: true })
+      const res = await axios.get(`${import.meta.env.VITE_URL}/api/auth/logout`, { withCredentials: true })
       //  console.log(res)
       setUser(null)
       toast.error('Logout Successfully!', {

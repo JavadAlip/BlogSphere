@@ -35,7 +35,7 @@ const Profile = () => {
         return;
       }
       const res = await axios.put(
-        'https://blogsphere-backend.onrender.com/api/users/' + user._id,
+        `${import.meta.env.VITE_URL}/api/users/` + user._id,
         { username, email },
         { withCredentials: true }
       );
@@ -54,7 +54,7 @@ const Profile = () => {
     const confirmed = window.confirm("Do you want to delete your account?");
     if (confirmed) {
       try {
-        const res = await axios.delete('https://blogsphere-backend.onrender.com/api/users/' + user._id, { withCredentials: true });
+        const res = await axios.delete(`${import.meta.env.VITE_URL}/api/users/` + user._id, { withCredentials: true });
         // Clear user state and any other client-side data
         setUser(null);
         // Clear the authentication cookie on the client-side
@@ -77,7 +77,7 @@ const Profile = () => {
   // user profile details fetch
   const fetchProfile = async () => {
     try {
-      const res = await axios.get('https://blogsphere-backend.onrender.com/api/users/' + id);
+      const res = await axios.get(`${import.meta.env.VITE_URL}/api/users/` + id);
       setUsername(res.data.username);
       setEmail(res.data.email);
     } catch (err) {
@@ -95,8 +95,8 @@ const Profile = () => {
   // user posts fetch
   const fetchUserPost = async () => {
     try {
-      // console.log(`URL:, ${import.meta.env.VITE_URL}`);
-      const res = await axios.get('https://blogsphere-backend.onrender.com/api/posts/user/' + id);
+      console.log(`URL:, ${import.meta.env.VITE_URL}`);
+      const res = await axios.get(`${import.meta.env.VITE_URL}/api/posts/user/` + id);
       console.log('cooommmmm', res.data);
       setPosts(res.data);
     } catch (err) {

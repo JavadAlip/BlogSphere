@@ -17,7 +17,7 @@ const EditPost = () => {
     const [error, setError] = useState('');
     const fetchPost = async () => {
         try {
-            const res = await axios.get('https://blogsphere-backend.onrender.com/api/posts/' + postId)
+            const res = await axios.get(`${import.meta.env.VITE_URL}/api/posts/` + postId)
             setTitle(res.data.title)
             setDesc(res.data.description)
             setFile(res.data.photo)
@@ -62,7 +62,7 @@ const EditPost = () => {
 
             // upload img
             try {
-                const imgUpload = await axios.post('https://blogsphere-backend.onrender.com/api/upload', data)
+                const imgUpload = await axios.post(`${import.meta.env.VITE_URL} /api/upload`, data)
                 console.log(imgUpload.data);
             } catch (err) {
                 console.log(err);
@@ -71,7 +71,7 @@ const EditPost = () => {
 
         // upload post
         try {
-            const res = await axios.put('https://blogsphere-backend.onrender.com/api/posts/'+ postId, post, { withCredentials: true })
+            const res = await axios.put(`${import.meta.env.VITE_URL}/api/posts/` + postId, post, { withCredentials: true })
             navigate("/posts/post/" + res.data._id)
             console.log(res.data);
         } catch (err) {

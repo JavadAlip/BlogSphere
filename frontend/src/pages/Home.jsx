@@ -22,7 +22,7 @@ const Home = () => {
   const fetchPosts = async () => {
     setLoader(true);
     try {
-      const res = await axios.get('https://blogsphere-backend.onrender.com/api/posts/'+ search);
+      const res = await axios.get(`${import.meta.env.VITE_URL}/api/posts/`+ search);
       setPosts(res.data);
       if (res.data.length === 0) {
         setNoResults(true);
