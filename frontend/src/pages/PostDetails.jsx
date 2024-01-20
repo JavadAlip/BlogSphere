@@ -178,7 +178,7 @@ const PostDetails = () => {
   const fetchPost = async () => {
     setLoader(true);
     try {
-      const res = await axios.get(`${import.meta.env.VITE_URL}/api/posts/` + postId);
+      const res = await axios.get(`${import.meta.env.VITE_URL}/api/posts/`+postId);
       setPost(res.data);
       setLoader(false);
     } catch (err) {
@@ -192,7 +192,7 @@ const PostDetails = () => {
     const confirmed = window.confirm("Do you want to delete your blog?")
     if (confirmed) {
       try {
-        const res = await axios.delete(`${import.meta.env.VITE_URL}/api/posts/` + postId, {
+        const res = await axios.delete(`${import.meta.env.VITE_URL}/api/posts/`+ postId,{
           withCredentials: true,
         });
         console.log(res.data);
@@ -211,7 +211,7 @@ const PostDetails = () => {
 
   const fetchPostComments = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_URL}/api/comments/post/` + postId);
+      const res = await axios.get(`${import.meta.env.VITE_URL}/api/comments/post/`+postId);
       setComments(res.data);
     } catch (err) {
       console.log(err);

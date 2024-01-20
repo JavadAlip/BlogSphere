@@ -7,7 +7,7 @@ const Comment = require('../models/Comment');
 // const { post } = require('./user');
 
 // create
-router.post("/create",verifyToken, async(req, res)=>{
+router.post("/create",verifyToken,async(req,res)=>{
     try {
         const newPost=new Post(req.body)
         const savedPost=await newPost.save()
@@ -20,7 +20,7 @@ router.post("/create",verifyToken, async(req, res)=>{
 
 // update
 
-router.put('/:id',verifyToken, async (req, res) => {
+router.put('/:id',verifyToken,async(req,res)=>{
     try {
         const updatedPost = await Post.findByIdAndUpdate(
             req.params.id,
@@ -35,7 +35,7 @@ router.put('/:id',verifyToken, async (req, res) => {
 
 
 // delete
-router.delete('/:id',verifyToken, async (req, res) => {
+router.delete('/:id',verifyToken,async(req,res)=>{
     try {
         await Post.findByIdAndDelete(req.params.id);
         await Comment.deleteMany({postId:req.params.id})
@@ -57,10 +57,8 @@ router.get("/:id",async(req,res)=>{
 })
 
 // get all posts 
-router.get('/', async (req, res) => {
+router.get('/',async(req,res)=>{
     const query=req.query
-   
-
     try {
         const searchFilter={
             title:{$regex:query.search, $options:"i"}
@@ -74,7 +72,7 @@ router.get('/', async (req, res) => {
 
   
 // get user posts
-router.get('/user/:userId', async (req, res) => {
+router.get('/user/:userId',async(req,res) => {
     try {
         const post=await Post.find({userId:req.params.userId})
         res.status(200).json(post);
