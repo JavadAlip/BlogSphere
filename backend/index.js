@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use('/images',express.static(path.join(__dirname,"/images")))
 
 
-app.use(cors({ origin:"https://unrivaled-nougat-21fde8.netlify.app", credentials: true }));
+app.use(cors({ origin:"https://blogssphere.netlify.app", credentials: true }));
 
 
 // Database
