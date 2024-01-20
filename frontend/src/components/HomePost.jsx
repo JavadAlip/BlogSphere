@@ -71,7 +71,7 @@ const HomePost = ({ post }) => {
     };
   }, []);
 
-  const imgSrc = import.meta.env.VITE_IMGFOLDER + post.photo;
+  const imgSrc =import.meta.env.VITE_IMGFOLDER+post.photo;
 
   useEffect(() => {
     // Log image source for debugging
