@@ -82,7 +82,7 @@
 //       fetchPostComments(); // Refresh comments after posting
 //       setComment('');
 //       window.location.reload(true);
-      
+
 //     } catch (err) {
 //       console.log('Error posting comment:', err);
 //     }
@@ -178,10 +178,10 @@ const PostDetails = () => {
   const fetchPost = async () => {
     setLoader(true);
     try {
-      const res = await axios.get(`${import.meta.env.VITE_URL}/api/posts/`+postId);
+      const res = await axios.get(`${import.meta.env.VITE_URL}/api/posts/` + postId);
       setPost(res.data);
       setLoader(false);
-      console.log("image error undo nokkan",res.data)
+      console.log("image error undo nokkan", res.data)
     } catch (err) {
       console.error('Error fetching post:', err);
       setLoader(false);
@@ -193,7 +193,7 @@ const PostDetails = () => {
     const confirmed = window.confirm("Do you want to delete your blog?")
     if (confirmed) {
       try {
-        const res = await axios.delete(`${import.meta.env.VITE_URL}/api/posts/`+ postId,{
+        const res = await axios.delete(`${import.meta.env.VITE_URL}/api/posts/` + postId, {
           withCredentials: true,
         });
         console.log(res.data);
@@ -212,7 +212,7 @@ const PostDetails = () => {
 
   const fetchPostComments = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_URL}/api/comments/post/`+postId);
+      const res = await axios.get(`${import.meta.env.VITE_URL}/api/comments/post/` + postId);
       setComments(res.data);
     } catch (err) {
       console.log(err);
@@ -247,7 +247,11 @@ const PostDetails = () => {
   };
 
   const imgSrc = `${import.meta.env.IMGFOLDER}${encodeURIComponent(post.photo)}`;
+  console.log("Post:", post);
+  console.log("IMGFOLDER:", import.meta.env.IMGFOLDER);
+  console.log("Encoded Photo:", encodeURIComponent(post.photo));
   console.log("Image Source nokkan:", imgSrc);
+
 
   return (
     <div>
