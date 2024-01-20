@@ -181,6 +181,7 @@ const PostDetails = () => {
       const res = await axios.get(`${import.meta.env.VITE_URL}/api/posts/`+postId);
       setPost(res.data);
       setLoader(false);
+      console.log("image error undo nokkan",res.data)
     } catch (err) {
       console.error('Error fetching post:', err);
       setLoader(false);
@@ -245,6 +246,9 @@ const PostDetails = () => {
     }
   };
 
+  const imgSrc = `${import.meta.env.IMGFOLDER}${encodeURIComponent(post.photo)}`;
+  console.log("Image Source nokkan:", imgSrc);
+
   return (
     <div>
       <Navbar />
@@ -272,7 +276,8 @@ const PostDetails = () => {
               <p>-{new Date(post.updatedAt).toString().slice(15, 21)}</p>
             </div>
           </div>
-          <img src={`${import.meta.env.IMGFOLDER}${post.photo}`} alt='' className='w-full mx-auto md:mt-2 mt-4 rounded-lg' />
+          <img src={imgSrc} alt='' className='w-full mx-auto md:mt-2 mt-4 rounded-lg' />
+          {/* <img src={`${import.meta.env.IMGFOLDER}${post.photo}`} alt='' className='w-full mx-auto md:mt-2 mt-4 rounded-lg' /> */}
           <p className='mx-auto mt-4 md:mt-4 '>{post.description}</p>
           <div className='flex items-center mt-4 space-x-4 font-semibold'>
             <p>Categories :</p>
