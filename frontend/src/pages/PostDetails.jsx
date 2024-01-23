@@ -247,13 +247,13 @@ const PostDetails = () => {
   };
 
   console.log('vaadey .........pls')
-  const imgSrc = `${import.meta.env.VITE_IMGFOLDER}${encodeURIComponent(post.photo)}`;
+  // const imgSrc = `${import.meta.env.VITE_IMGFOLDER}${encodeURIComponent(post.photo)}`;
   // const imgSrc = `${import.meta.env.IMGFOLDER || '/fallback-folder/' }${encodeURIComponent(post.photo)}`;
 
   console.log("Post:", post);
   console.log("IMGFOLDER:", import.meta.env.VITE_IMGFOLDER);
-  console.log("Encoded Photo:", encodeURIComponent(post.photo));
-  console.log("Image Source nokkan:", imgSrc);
+  // console.log("Encoded Photo:", encodeURIComponent(post.photo));
+  // console.log("Image Source nokkan:", imgSrc);
 
 
   return (
@@ -283,7 +283,7 @@ const PostDetails = () => {
               <p>-{new Date(post.updatedAt).toString().slice(15, 21)}</p>
             </div>
           </div>
-          <img src={imgSrc} alt='' className='w-full mx-auto md:mt-2 mt-4 rounded-lg' />
+          <img  src={import.meta.env.VITE_IMGFOLDER + post.photo} alt='' className='w-full mx-auto md:mt-2 mt-4 rounded-lg' />
           {/* <img src={`${import.meta.env.IMGFOLDER}${post.photo}`} alt='' className='w-full mx-auto md:mt-2 mt-4 rounded-lg' /> */}
           <p className='mx-auto mt-4 md:mt-4 '>{post.description}</p>
           <div className='flex items-center mt-4 space-x-4 font-semibold'>

@@ -71,19 +71,19 @@ const HomePost = ({ post }) => {
   }, []);
 
   // Encode the image filename
-  const encodedPhoto = encodeURIComponent(post.photo);
-  const imgSrc = `${import.meta.env.VITE_IMGFOLDER}${encodedPhoto}`;
+  // const encodedPhoto = encodeURIComponent(post.photo);
+  // const imgSrc = `${import.meta.env.VITE_IMGFOLDER}${encodedPhoto}`;
 
-  useEffect(() => {
-    // Log image source for debugging
-    console.log("Image Source:", imgSrc);
-  }, [imgSrc]);
+  // useEffect(() => {
+  //   // Log image source for debugging
+  //   console.log("Image Source:", imgSrc);
+  // }, [imgSrc]);
 
   return (
     <div className='w-full flex mt-8 space-x-4 '>
       {/* left */}
       <div className='w-[35%] h-[200px] flex justify-center items-center'>
-        <img src={imgSrc} alt="" className='h-full w-full rounded-lg object-cover' />
+        <img src={import.meta.env.VITE_IMGFOLDER + post.photo} alt="" className='h-full w-full rounded-lg object-cover' />
       </div>
       {/* right */}
       <div className='flex-col flex w-[65%]'>
