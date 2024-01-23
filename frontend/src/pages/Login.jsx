@@ -7,6 +7,8 @@ import logo from '/Blog-logo.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
+import { VITE_URL,VITE_IMGFOLDER } from '../url';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,9 +16,10 @@ const Login = () => {
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
+
   const handleLogin = async () => {
     try {
-      const res = await axios.post(`${import.meta.env.VITE_URL}/api/auth/login`, { email, password }, { withCredentials: true });
+      const res = await axios.post(`${VITE_URL}/api/auth/login`, { email, password }, { withCredentials: true });
       setUser(res.data);
       console.log(res.data)
       toast.success('Login Successfully!', {

@@ -6,6 +6,9 @@ import logo from '/Blog-logo.png'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
+import { VITE_URL,VITE_IMGFOLDER } from '../url';
+
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -35,7 +38,7 @@ const Register = () => {
         return;
       }
 
-      const res = await axios.post(`${import.meta.env.VITE_URL}/api/auth/register`, {
+      const res = await axios.post(`${VITE_URL}/api/auth/register`, {
         username,
         email,
         password,

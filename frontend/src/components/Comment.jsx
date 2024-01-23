@@ -2,13 +2,14 @@ import React, { useContext } from 'react';
 import { MdDelete } from 'react-icons/md';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
+import { VITE_URL } from '../url';
 
 const Comment = ({ c, post }) => {
   const { user } = useContext(UserContext);
 
   const deleteComment = async () => {
     try {
-      const res = await axios.delete(`${import.meta.env.VITE_URL}/api/comments/${c._id}`, { withCredentials: true });
+      const res = await axios.delete(`${VITE_URL}/api/comments/${c._id}`, { withCredentials: true });
       console.log("Comment deleted", res);
       // Add any additional logic after deleting the comment
       window.location.reload(true);

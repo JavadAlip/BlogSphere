@@ -28,9 +28,9 @@ export default defineConfig({
   build: {
     outDir: 'dist', // Output directory for the build artifacts
     plugins: [react()],
-    define: {
-      'import.meta.env.VITE_URL': JSON.stringify(process.env.VITE_URL),
-      'import.meta.env.VITE_IMGFOLDER': JSON.stringify(process.env.VITE_IMGFOLDER),
-    },
+    // define: {
+    //   'import.meta.env.VITE_URL': JSON.stringify(process.env.VITE_URL),
+    //   'import.meta.env.VITE_IMGFOLDER': JSON.stringify(process.env.VITE_IMGFOLDER),
+    // },
   },
 });

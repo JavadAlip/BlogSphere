@@ -27,6 +27,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
+import { VITE_URL } from '../url';
 export const UserContext = createContext({});
 
 export function UserContextProvider({ children }) {
@@ -34,7 +35,7 @@ export function UserContextProvider({ children }) {
 
     const getUser = async () => {
         try {
-            const res = await axios.get(`${import.meta.env.VITE_URL}/api/auth/refetch`, { withCredentials: true });
+            const res = await axios.get(`${VITE_URL}/api/auth/refetch`, { withCredentials: true });
             console.log("Response from getUser:", res.data);
             setUser(res.data);
         } catch (err) {

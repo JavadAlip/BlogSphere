@@ -5,6 +5,8 @@ import { ImCross } from 'react-icons/im';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
+
+import { VITE_URL } from '../url';
 const EditPost = () => {
     const [cat, setCat] = useState('');
     const [cats, setCats] = useState([]);
@@ -17,7 +19,7 @@ const EditPost = () => {
     const [error, setError] = useState('');
     const fetchPost = async () => {
         try {
-            const res = await axios.get(`${import.meta.env.VITE_URL}/api/posts/` + postId)
+            const res = await axios.get(`${VITE_URL}/api/posts/` + postId)
             setTitle(res.data.title)
             setDesc(res.data.description)
             setFile(res.data.photo)
@@ -62,7 +64,7 @@ const EditPost = () => {
 
             // upload img
             try {
-                const imgUpload = await axios.post(`${import.meta.env.VITE_URL} /api/upload`, data)
+                const imgUpload = await axios.post(`${VITE_URL} /api/upload`, data)
                 console.log(imgUpload.data);
             } catch (err) {
                 console.log(err);
@@ -71,7 +73,7 @@ const EditPost = () => {
 
         // upload post
         try {
-            const res = await axios.put(`${import.meta.env.VITE_URL}/api/posts/` + postId, post, { withCredentials: true })
+            const res = await axios.put(`${VITE_URL}/api/posts/` + postId, post, { withCredentials: true })
             navigate("/posts/post/" + res.data._id)
             console.log(res.data);
         } catch (err) {
