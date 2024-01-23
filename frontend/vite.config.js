@@ -22,6 +22,7 @@ import dotenv from 'dotenv';
 
 // Load environment variables from .env file
 dotenv.config();
+console.log('Loaded environment variables:', process.env);
 
 export default defineConfig({
   build: {
