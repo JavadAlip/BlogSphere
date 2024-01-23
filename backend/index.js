@@ -211,7 +211,7 @@ connectDB().then(() => {
   const upload = multer({ storage: storage });
 
   app.post('/api/upload', upload.single('file'), (req, res) => {
-    console.log(req.file);
+    console.log("enthaan error in upload time ",req.file);
     res.status(200).json('Image has been uploaded successfully!');
   });
 

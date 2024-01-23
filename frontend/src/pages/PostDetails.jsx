@@ -246,8 +246,9 @@ const PostDetails = () => {
     }
   };
 
-  // const imgSrc = `${import.meta.env.IMGFOLDER}${encodeURIComponent(post.photo)}`;
-  const imgSrc = `${import.meta.env.IMGFOLDER || '/fallback-folder/' }${encodeURIComponent(post.photo)}`;
+  console.log('vaadey .........pls')
+  const imgSrc = `${import.meta.env.IMGFOLDER}${encodeURIComponent(post.photo)}`;
+  // const imgSrc = `${import.meta.env.IMGFOLDER || '/fallback-folder/' }${encodeURIComponent(post.photo)}`;
 
   console.log("Post:", post);
   console.log("IMGFOLDER:", import.meta.env.IMGFOLDER);
