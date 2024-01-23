@@ -48,8 +48,6 @@
 
 // export default HomePost;
 
-
-
 import React, { useState, useEffect } from 'react';
 
 const HomePost = ({ post }) => {
@@ -74,7 +72,7 @@ const HomePost = ({ post }) => {
 
   // Encode the image filename
   const encodedPhoto = encodeURIComponent(post.photo);
-  const imgSrc = import.meta.env.VITE_IMGFOLDER + encodedPhoto;
+  const imgSrc = `${import.meta.env.VITE_IMGFOLDER}${encodedPhoto}`;
 
   useEffect(() => {
     // Log image source for debugging
