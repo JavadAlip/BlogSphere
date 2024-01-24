@@ -165,7 +165,7 @@ app.use(cookieParser());
 
 // Set the static folder for images
 const imageFolder = process.env.NODE_ENV === 'production' ? 'images' : path.join(__dirname, 'images');
-app.use('images', express.static(imageFolder));
+app.use('/images', express.static(imageFolder));
 
 app.use(
   cors({
