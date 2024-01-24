@@ -6,6 +6,7 @@ import { UserContext } from '../context/UserContext';
 import logo from '/Blog-logo.png';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { VITE_URL } from '../url';
 
 const Navbar = () => {
     const [prompt, setPrompt] = useState('');
@@ -32,7 +33,7 @@ const Navbar = () => {
     const fetchProfile = async () => {
         try {
             if (user && user._id) {
-                const res = await axios.get(`${import.meta.env.VITE_URL}/api/users/` + user._id);
+                const res = await axios.get(`${VITE_URL}/api/users/` + user._id);
                 setUsername(res.data.username);
                 // setPassword(res.data.password);
                 console.log("kittiye", user.data)
