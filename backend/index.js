@@ -214,6 +214,15 @@ connectDB().then(() => {
   const upload = multer({ storage: storage });
 
   app.post('/api/upload', upload.single('file'), (req, res) => {
+
+      // Set CORS headers
+  res.header('Access-Control-Allow-Origin', 'https://blogssphere.netlify.app');
+  res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  // Set other headers for image upload response
+  res.header('Content-Type', 'application/json'); 
+  
     console.log("enthaan error in upload time ",req.file);
     res.status(200).json('Image has been uploaded successfully!');
   });
