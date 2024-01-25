@@ -287,7 +287,7 @@ connectDB().then(() => {
       cb(null, req.body.img);
     },
   });
-
+  
   const upload = multer({ storage: storage });
 
   app.post('/api/upload', upload.single('file'), (req, res) => {
