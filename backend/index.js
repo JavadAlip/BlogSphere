@@ -252,6 +252,8 @@ app.use(
   })
 );
 
+app.options('*', cors());
+
 // Database connection
 const connectDB = async () => {
   try {
