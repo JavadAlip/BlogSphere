@@ -181,7 +181,7 @@ const PostDetails = () => {
   const fetchPost = async () => {
     setLoader(true);
     try {
-      const res = await axios.get(`${VITE_URL}/api/posts/` + postId);
+      const res = await axios.get(VITE_URL+"/api/posts/" + postId);
       setPost(res.data);
       setLoader(false);
       console.log("image error undo nokkan", res.data)
@@ -196,7 +196,7 @@ const PostDetails = () => {
     const confirmed = window.confirm("Do you want to delete your blog?")
     if (confirmed) {
       try {
-        const res = await axios.delete(`${VITE_URL}/api/posts/` + postId, {
+        const res = await axios.delete(VITE_URL+"/api/posts/" + postId, {
           withCredentials: true,
         });
         console.log(res.data);
@@ -215,7 +215,7 @@ const PostDetails = () => {
 
   const fetchPostComments = async () => {
     try {
-      const res = await axios.get(`${VITE_URL}/api/comments/post/` + postId);
+      const res = await axios.get(VITE_URL+'/api/comments/post/' + postId);
       setComments(res.data);
     } catch (err) {
       console.log(err);
@@ -230,7 +230,7 @@ const PostDetails = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        `${VITE_URL}/api/comments/create`,
+        VITE_URL+"/api/comments/create",
         {
           comment: comment,
           author: user.username,
