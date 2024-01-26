@@ -199,33 +199,33 @@ connectDB().then(() => {
   app.use('/api/posts', postRoute);
   app.use('/api/comments', commentRoute);
 
-  // multer image upload
-  const storage = multer.diskStorage({
-    destination: (req, file, fn) => {
-      fn(null, "images");
-    },
-    filename: (req, file, fn) => {
-      fn(null, Date.now() + path.extname(file.originalname));
-      fn(null,req.body.img)
-    },
-  });
-  
+ // multer image upload
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+    // Note: Removed the line below, as it was overwriting the filename set above
+    // cb(null, req.body.img);
+  },
+});
 
-  const upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
-  app.post('/api/upload', upload.single('file'), (req, res) => {
-
-      // Set CORS headers
+app.post('/api/upload', upload.single('file'), (req, res) => {
+  // Set CORS headers
   res.header('Access-Control-Allow-Origin', 'https://blogssphere.netlify.app');
   res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   // Set other headers for image upload response
-  res.header('Content-Type', 'application/json'); 
-  
-    console.log("enthaan error in upload time ",req.file);
-    res.status(200).json('Image has been uploaded successfully!');
-  });
+  res.header('Content-Type', 'application/json');
+
+  console.log("Uploaded file details:", req.file);
+  res.status(200).json('Image has been uploaded successfully!');
+});
+
 
   // Start the server
   const PORT = process.env.PORT || 10000;
