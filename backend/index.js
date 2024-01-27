@@ -217,7 +217,7 @@ app.post('/api/upload', upload.single('file'), (req, res) => {
   // Set CORS headers
   res.header('Access-Control-Allow-Origin', 'https://blogssphere.netlify.app');
   res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Headers', 'Content-Type','image/*');
 
   // Set other headers for image upload response
   res.header('Content-Type', 'application/json');
