@@ -6,6 +6,9 @@ const Post=require('../models/Post')
 const Comment=require('../models/Comment');
 const verifyToken = require('../verifyToekn');
 
+const cloudinary=require ("../utils/cloudinary")
+const upload = require ("../multer/multer")
+
 // update
 router.put('/:id',verifyToken, async (req, res) => {
     try {
@@ -43,6 +46,25 @@ router.get('/:id', async (req, res) => {
       res.status(500).json(err);
   }
 });
+
+
+// image upload
+router.post ('/upload', upload.single('image'), function(req,res){
+  cloudinary.uploader.upload(req.file.path, function (err, result){
+    if(err){
+        console.log(err)
+        return res.status(500).json({
+            success:false,
+            message:"cloadinary have some errors"
+        })
+    }
+    res.status(200).json({
+        success:true,
+        message:"uploaded! completed",
+        data: result
+    })
+  })
+})
 
 
 

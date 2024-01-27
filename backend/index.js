@@ -164,10 +164,10 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Set the static folder for images
-const imageFolder = process.env.NODE_ENV === 'production' ? 'images' : path.join(__dirname, 'images');
-app.use('/images', express.static(imageFolder));
+// const imageFolder = process.env.NODE_ENV === 'production' ? 'images' : path.join(__dirname, 'images');
+// app.use('/images', express.static(imageFolder));
 
-app.use('/images',express.static(path.join(__dirname,"/images")))
+// app.use('/images',express.static(path.join(__dirname,"/images")))
 
 app.use(
   cors({
@@ -200,31 +200,29 @@ connectDB().then(() => {
   app.use('/api/comments', commentRoute);
 
  // multer image upload
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "images");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-    // Note: Removed the line below, as it was overwriting the filename set above
-    // cb(null, req.body.img);
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "images");
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, Date.now() + path.extname(file.originalname));
+//   },
+// });
 
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
 
-app.post('/api/upload', upload.single('file'), (req, res) => {
-  // Set CORS headers
-  res.header('Access-Control-Allow-Origin', 'https://blogssphere.netlify.app');
-  res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type','image/*');
+// app.post('/api/upload', upload.single('file'), (req, res) => {
+//   // Set CORS headers
+//   res.header('Access-Control-Allow-Origin', 'https://blogssphere.netlify.app');
+//   res.header('Access-Control-Allow-Methods', 'POST, OPTIONS');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type','image/*');
 
-  // Set other headers for image upload response
-  res.header('Content-Type', 'application/json');
+//   // Set other headers for image upload response
+//   res.header('Content-Type', 'application/json');
 
-  console.log("Uploaded file details:", req.file);
-  res.status(200).json('Image has been uploaded successfully!');
-});
+//   console.log("Uploaded file details:", req.file);
+//   res.status(200).json('Image has been uploaded successfully!');
+// });
 
 
   // Start the server
