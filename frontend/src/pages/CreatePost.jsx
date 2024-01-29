@@ -157,7 +157,8 @@ import { VITE_URL } from '../url';
 const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [file, setFile] = useState(null);
+  const [image, setImage] = useState("");
+  // const [file, setFile] = useState(null);
   const { user } = useContext(UserContext);
   const [cat, setCat] = useState('');
   const [cats, setCats] = useState([]);
@@ -176,6 +177,8 @@ const CreatePost = () => {
     setCat('');
     setCats(updateCats);
   };
+
+
 
   const handleCreate = async (e) => {
     e.preventDefault();
@@ -200,9 +203,21 @@ const CreatePost = () => {
       categories: cats,
     };
 
-    if (file) {
+    if (image) {
       const data = new FormData();
-      data.append('file', file);
+      data.append('file', image);
+      data.append("upload_preset","blogssphere")
+      data.append({cloud_name: process.env.CLOUDINARY_CLOUD_NAME} )
+      fetch("https://api.cloudinary.com/v2/doue07abb/image/upload",{
+        method:"post",
+        body:data
+      }).then((res)=>res.json())
+      .then((data)=>{
+        console.log(data);
+      }).catch((err)=>{
+        console.log(err)
+      })
+
 
       // upload img
       try {
