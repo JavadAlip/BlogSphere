@@ -243,7 +243,7 @@ const CreatePost = () => {
             {
               method: 'post',
               body: data,
-            }
+            } 
           );
 
           if (!cloudinaryResponse.ok) {
