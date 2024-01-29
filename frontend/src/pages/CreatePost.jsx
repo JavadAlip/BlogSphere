@@ -241,7 +241,7 @@ const CreatePost = () => {
           const cloudinaryResponse = await fetch(
             'https://api.cloudinary.com/v1_1/doue07abb/image/upload',
             {
-              method: 'POST',
+              method: 'post',
               body: data,
             }
           );
