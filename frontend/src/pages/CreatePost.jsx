@@ -144,7 +144,6 @@
 // };
 // export default CreatePost;
 
-
 import React, { useContext, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -157,8 +156,7 @@ import { VITE_URL } from '../url';
 const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [image, setImage] = useState("");
-  // const [file, setFile] = useState(null);
+  const [image, setImage] = useState(null);
   const { user } = useContext(UserContext);
   const [cat, setCat] = useState('');
   const [cats, setCats] = useState([]);
@@ -177,8 +175,6 @@ const CreatePost = () => {
     setCat('');
     setCats(updateCats);
   };
-
-
 
   const handleCreate = async (e) => {
     e.preventDefault();
@@ -203,32 +199,40 @@ const CreatePost = () => {
       categories: cats,
     };
 
+    // Check if an image is selected
     if (image) {
-      const data = new FormData();
-      data.append('file', image);
-      data.append("upload_preset","blogssphere")
-      data.append({cloud_name: process.env.CLOUDINARY_CLOUD_NAME} )
-      fetch("https://api.cloudinary.com/v2/doue07abb/image/upload",{
-        method:"post",
-        body:data
-      }).then((res)=>res.json())
-      .then((data)=>{
-        console.log(data);
-      }).catch((err)=>{
-        console.log(err)
-      })
-
-
-      // upload img
       try {
-        const imgUpload = await axios.post(`${VITE_URL}/api/upload`, data);
-        console.log("Image upload response:",imgUpload.data);
+        const data = new FormData();
+        data.append('file', image);
+        data.append('upload_preset', 'blogssphere');
+        data.append('cloud_name', process.env.CLOUDINARY_CLOUD_NAME);
+
+        // Upload image to Cloudinary
+        const cloudinaryResponse = await fetch(
+          'https://api.cloudinary.com/v1_1/' +
+            process.env.CLOUDINARY_CLOUD_NAME +
+            '/image/upload',
+          {
+            method: 'POST',
+            body: data,
+          }
+        );
+
+        if (!cloudinaryResponse.ok) {
+          throw new Error('Error uploading image to Cloudinary');
+        }
+
+        const cloudinaryData = await cloudinaryResponse.json();
+        console.log('Image upload response:', cloudinaryData);
+
+        // Add Cloudinary URL to the post object
+        post.image = cloudinaryData.secure_url;
       } catch (err) {
-        console.log("Error uploading image:",err);
+        console.log('Error uploading image:', err);
       }
     }
 
-    // upload post
+    // Upload post
     try {
       const res = await axios.post(`${VITE_URL}/api/posts/create`, post, { withCredentials: true });
       navigate('/posts/post/' + res.data._id);
@@ -238,10 +242,6 @@ const CreatePost = () => {
     }
   };
 
-
-
-
-  
   return (
     <div>
       <Navbar />
@@ -254,7 +254,11 @@ const CreatePost = () => {
             placeholder='Blog title'
             type='text'
           />
-          <input onChange={(e) => setFile(e.target.files[0])} className='px-4 ' type='file' />
+          <input
+            onChange={(e) => setImage(e.target.files[0])}
+            className='px-4 '
+            type='file'
+          />
           <div className='flex flex-col '>
             <div className='flex items-center space-x-4 md:space-x-8 '>
               <input
@@ -309,4 +313,3 @@ const CreatePost = () => {
 };
 
 export default CreatePost;
-
