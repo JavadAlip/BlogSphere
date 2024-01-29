@@ -247,7 +247,8 @@ const CreatePost = () => {
           );
 
           if (!cloudinaryResponse.ok) {
-            console.error('Cloudinary upload failed:', cloudinaryResponse.statusText);
+            const errorResponse = await cloudinaryResponse.json();
+            console.error('Cloudinary upload failed:', errorResponse);
             return;
           }
 
