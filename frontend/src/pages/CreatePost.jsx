@@ -10,7 +10,7 @@ import { VITE_URL } from '../url';
 const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
   const { user } = useContext(UserContext);
   const [cat, setCat] = useState('');
   const [cats, setCats] = useState([]);
@@ -59,36 +59,39 @@ const CreatePost = () => {
         const data = new FormData();
         data.append('file', image);
         data.append('upload_preset', 'blogssphere');
-        data.append('cloud_name', process.env.CLOUDINARY_CLOUD_NAME);
+        data.append('cloud_name', 'doue07abb');
 
         // Upload image to Cloudinary
-        const cloudinaryResponse = await fetch(
-          'https://api.cloudinary.com/v1_1/' +
-            process.env.CLOUDINARY_CLOUD_NAME +
-            '/image/upload',
+        await fetch(
+          'https://api.cloudinary.com/v1_1/doue07abb/image/upload',
           {
             method: 'POST',
             body: data,
           }
         );
 
-        if (!cloudinaryResponse.ok) {
-          throw new Error('Error uploading image to Cloudinary');
+        // Upload img to your server
+        try {
+          const imgUpload = await axios.post(
+            `${import.meta.env.VITE_URL}/api/upload`,
+            data
+          );
+          console.log(imgUpload.data);
+        } catch (err) {
+          console.log(err);
         }
-
-        const cloudinaryData = await cloudinaryResponse.json();
-        console.log('Image upload response:', cloudinaryData);
-
-        // Add Cloudinary URL to the post object
-        post.image = cloudinaryData.secure_url;
       } catch (err) {
-        console.log('Error uploading image:', err);
+        console.log(err);
       }
     }
 
     // Upload post
     try {
-      const res = await axios.post(`${VITE_URL}/api/posts/create`, post, { withCredentials: true });
+      const res = await axios.post(
+        `${VITE_URL}/api/posts/create`,
+        post,
+        { withCredentials: true }
+      );
       navigate('/posts/post/' + res.data._id);
       console.log(res.data);
     } catch (err) {
@@ -100,11 +103,11 @@ const CreatePost = () => {
     <div>
       <Navbar />
       <div className='px-6 md:px-[200px] mt-8'>
-      <input
-            onChange={(e) => setImage(e.target.files[0])}
-            className='px-4 '
-            type='file'
-          />
+        <input
+          onChange={(e) => setImage(e.target.files[0])}
+          className='px-4 '
+          type='file'
+        />
         <h1 className='font-bold mt-8 md:text-2xl text-xl '>Create a blog</h1>
         <form action='' className='w-full flex mt-4 flex-col space-y-4 md:space-y-8'>
           <input
