@@ -246,6 +246,8 @@ const CreatePost = () => {
     <div>
       <Navbar />
       <div className='px-6 md:px-[200px] mt-8'>
+        <input type="file"  onChange={(e)=>{console.log(e)}}/>
+
         <h1 className='font-bold mt-8 md:text-2xl text-xl '>Create a blog</h1>
         <form action='' className='w-full flex mt-4 flex-col space-y-4 md:space-y-8'>
           <input
