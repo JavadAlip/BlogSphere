@@ -267,6 +267,9 @@ const CreatePost = () => {
 
           // Now, you can use cloudinaryUrl to send to your server or handle it as needed
 
+
+
+          
           // Upload image to your server
           try {
             const imgUpload = await axios.post(
@@ -285,6 +288,8 @@ const CreatePost = () => {
         console.error('Error handling image upload:', err);
       }
     }
+
+
 
     // Upload post
     try {
