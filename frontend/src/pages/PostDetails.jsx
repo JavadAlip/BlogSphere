@@ -324,7 +324,6 @@
 
 // export default PostDetails;
 
-
 import React, { useContext, useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -401,7 +400,6 @@ const PostDetails = () => {
       console.log('comment posted', res.data);
       fetchPostComments(); // Refresh comments after posting
       setComment('');
-      // window.location.reload(true); // This line may not be necessary
     } catch (err) {
       console.log('Error posting comment:', err);
     }
@@ -436,9 +434,15 @@ const PostDetails = () => {
             </div>
           )}
           <h1 className='text-2xl font-bold md:text-3xl md:mt-6 text-black'>{post.title}</h1>
-          {/* ... (other post details) */}
+          <p className='text-gray-600 mt-2'>{post.description}</p>
+          <div className='flex flex-wrap mt-2'>
+            {post.categories?.map((category) => (
+              <span key={category} className='bg-gray-200 text-gray-800 px-2 py-1 rounded-full mr-2 mt-2'>
+                {category}
+              </span>
+            ))}
+          </div>
           {cloudinaryUrl && <img src={cloudinaryUrl} alt='' className='w-full mx-auto md:mt-2 mt-4 rounded-lg' />}
-          {/* ... (other post details) */}
           <div className='flex flex-col mt-2'>
             <h3 className='mt-2  font-semibold'>Comments :</h3>
             {comments?.map((c) => (
