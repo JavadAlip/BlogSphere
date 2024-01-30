@@ -257,7 +257,7 @@ const CreatePost = () => {
           // Upload image to your server
           try {
             const imgUpload = await axios.post(
-              `${import.meta.env.VITE_URL}/api/upload`,
+              `${VITE_URL}/api/upload`,
               data
             );
 
@@ -276,7 +276,7 @@ const CreatePost = () => {
     // Upload post
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_URL}/api/posts/create`,
+        `${VITE_URL}/api/posts/create`,
         post,
         { withCredentials: true }
       );
