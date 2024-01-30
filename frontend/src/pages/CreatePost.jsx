@@ -243,7 +243,7 @@ const CreatePost = () => {
             {
               method: 'post',
               body: data,
-            } 
+            }
           );
 
           if (!cloudinaryResponse.ok) {
@@ -252,13 +252,18 @@ const CreatePost = () => {
             return;
           }
 
-          console.log('Image uploaded to Cloudinary successfully.');
+          const cloudinaryData = await cloudinaryResponse.json();
+          const cloudinaryUrl = cloudinaryData.secure_url;
+
+          console.log('Image uploaded to Cloudinary successfully:', cloudinaryUrl);
+
+          // Now, you can use cloudinaryUrl to send to your server or handle it as needed
 
           // Upload image to your server
           try {
             const imgUpload = await axios.post(
               `${VITE_URL}/api/upload`,
-              data
+              { imageUrl: cloudinaryUrl } // Send the Cloudinary URL to your server
             );
 
             console.log('Image uploaded to custom server successfully:', imgUpload.data);
@@ -268,9 +273,8 @@ const CreatePost = () => {
         } catch (err) {
           console.error('Error uploading to Cloudinary:', err);
         }
-      } catch (err) {
-        console.error('Error processing image:', err);
       }
+        
     }
 
     // Upload post
