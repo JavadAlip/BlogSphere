@@ -276,7 +276,7 @@ const CreatePost = () => {
     // Upload post
     try {
       const res = await axios.post(
-        `${VITE_URL}/api/posts/create`,
+        `${import.meta.env.VITE_URL}/api/posts/create`,
         post,
         { withCredentials: true }
       );
