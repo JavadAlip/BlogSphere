@@ -325,8 +325,6 @@
 // export default PostDetails;
 
 
-
-
 import React, { useContext, useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -367,6 +365,23 @@ const PostDetails = () => {
       setComments(res.data);
     } catch (err) {
       console.log(err);
+    }
+  };
+
+  const handleDltPost = async () => {
+    const confirmed = window.confirm("Do you want to delete your blog?");
+    if (confirmed) {
+      try {
+        const res = await axios.delete(`${VITE_URL}/api/posts/${postId}`, {
+          withCredentials: true,
+        });
+        console.log(res.data);
+        navigate('/');
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      alert("Blog delete canceled.");
     }
   };
 
