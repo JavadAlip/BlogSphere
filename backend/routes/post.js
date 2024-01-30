@@ -6,8 +6,8 @@ const verifyToken = require('../verifyToekn');
 const Comment = require('../models/Comment');
 // const { post } = require('./user');
 
-const cloudinary=require ("../utils/cloudinary")
-const upload = require ("../multer/multer")
+// const cloudinary=require ("../utils/cloudinary")
+// const upload = require ("../multer/multer")
 
 // create
 router.post("/create",verifyToken,async(req,res)=>{
@@ -104,21 +104,21 @@ router.get('/user/:userId',async(req,res) => {
 
 
   // image upload
-router.post ('/upload', upload.single('image'), function(req,res){
-    cloudinary.uploader.upload(req.file.path, function (err, result){
-      if(err){
-          console.log(err)
-          return res.status(500).json({
-              success:false,
-              message:"cloadinary have some errors"
-          })
-      }
-      res.status(200).json({
-          success:true,
-          message:"uploaded! completed",
-          data: result
-      })
-    })
-  })
+// router.post ('/upload', upload.single('image'), function(req,res){
+//     cloudinary.uploader.upload(req.file.path, function (err, result){
+//       if(err){
+//           console.log(err)
+//           return res.status(500).json({
+//               success:false,
+//               message:"cloadinary have some errors"
+//           })
+//       }
+//       res.status(200).json({
+//           success:true,
+//           message:"uploaded! completed",
+//           data: result
+//       })
+//     })
+//   })
 
 module.exports = router;
