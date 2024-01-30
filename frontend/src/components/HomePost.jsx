@@ -129,6 +129,9 @@ const HomePost = ({ post }) => {
       setTitleLimit(window.innerWidth <= 768 ? 80 : 80);
     };
 
+
+    
+
     // Initial setup
     handleResize();
     // Listen for window resize events
@@ -140,7 +143,22 @@ const HomePost = ({ post }) => {
   }, []);
 
   // Construct Cloudinary image URL
-  const cloudinaryUrl = `https://res.cloudinary.com/doue07abb/image/upload/${post.photo}`;
+  // const cloudinaryUrl = `https://res.cloudinary.com/doue07abb/image/upload/${post.photo}`;
+  const cloudinaryUrl = post.photo
+  ? `https://res.cloudinary.com/doue07abb/image/upload/${post.photo}`
+  : ''; // Provide a default or handle the case when post.photo is undefined
+
+
+  useEffect(() => {
+    console.log('Post photo:', post.photo);
+    // ... other code
+  }, [post]);
+
+  useEffect(() => {
+    console.log('Cloudinary URL:', cloudinaryUrl);
+    // ... other code
+  }, [cloudinaryUrl]);
+  
 
   return (
     <div className='w-full flex mt-8 space-x-4 '>
