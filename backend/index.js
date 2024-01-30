@@ -22,27 +22,29 @@ const storage = multer.diskStorage({
         cb(null, "images");
     },
     filename: (req, file, cb) => {
-        cb(null, req.body.img);
-        // cb(null, "imageme.jpg");
+        cb(null, file.originalname); // Use the original filename
     },
 });
 const upload = multer({ storage: storage });
-app.post('/api/upload', upload.single("file"), (req, res) => {
-    res.status(200).json("Image has been uploaded successfully!");
-});
-
-// Serving static images
-app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use(cors({
     origin: "https://blogssphere.netlify.app",
     credentials: true,
 }));
 
+// Handling Preflight OPTIONS Requests
+app.options('*', cors()); // Enable preflight for all routes
+
+// Serving static images
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
 // Database
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URL);
+        await mongoose.connect(process.env.MONGO_URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
         console.log("Database connected successfully");
     } catch (err) {
         console.error(err);
@@ -52,7 +54,7 @@ const connectDB = async () => {
 // Connect to the database before starting the server
 connectDB().then(() => {
     app.get('/', (req, res) => {
-        res.send('api connected');
+        res.send('API connected');
     });
 
     // Routes
@@ -60,6 +62,17 @@ connectDB().then(() => {
     app.use('/api/users', userRoute);
     app.use('/api/posts', postRoute);
     app.use('/api/comments', commentRoute);
+
+    // Multer image upload endpoint
+    app.post('/api/upload', upload.single("file"), (req, res) => {
+        res.status(200).json("Image has been uploaded successfully!");
+    });
+
+    // Error handling middleware
+    app.use((err, req, res, next) => {
+        console.error(err.stack);
+        res.status(500).send('Something went wrong!');
+    });
 
     // Start the server
     const PORT = process.env.PORT || 10000;
