@@ -81,6 +81,7 @@ const CreatePost = () => {
           );
 
     // Upload post
+    
     try {
       const res = await axios.post(
         `${VITE_URL}/api/posts/create`,
