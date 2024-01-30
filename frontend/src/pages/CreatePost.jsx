@@ -206,6 +206,14 @@ const CreatePost = () => {
   };
 
   const handleCreate = async (e) => {
+
+    // Example URLs:
+    const uploadUrl = `${VITE_URL}/api/upload`;
+    const createPostUrl = `${VITE_URL}/api/posts/create`;
+    console.log('Upload URL:', uploadUrl);
+    console.log('Create Post URL:', createPostUrl);
+
+
     e.preventDefault();
 
     const titleRegex = /\S.*\S/;
