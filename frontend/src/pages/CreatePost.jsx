@@ -237,16 +237,14 @@ const CreatePost = () => {
     };
 
     // Check if an image is selected
-    if (image) {
-      try {
+   
         const data = new FormData();
         data.append('file', image);
         data.append('upload_preset', 'blogssphere');
         data.append('cloud_name', 'doue07abb');
 
         // Upload image to Cloudinary
-        try {
-          const cloudinaryResponse = await fetch(
+       fetch(
             'https://api.cloudinary.com/v1_1/doue07abb/image/upload',
             {
               method: 'post',
@@ -254,16 +252,16 @@ const CreatePost = () => {
             }
           );
 
-          if (!cloudinaryResponse.ok) {
-            const errorResponse = await cloudinaryResponse.json();
-            console.error('Cloudinary upload failed:', errorResponse);
-            return;
-          }
+          // if (!cloudinaryResponse.ok) {
+          //   const errorResponse = await cloudinaryResponse.json();
+          //   console.error('Cloudinary upload failed:', errorResponse);
+          //   return;
+          // }
 
-          const cloudinaryData = await cloudinaryResponse.json();
-          const cloudinaryUrl = cloudinaryData.secure_url;
+          // const cloudinaryData = await cloudinaryResponse.json();
+          // const cloudinaryUrl = cloudinaryData.secure_url;
 
-          console.log('Image uploaded to Cloudinary successfully:', cloudinaryUrl);
+          // console.log('Image uploaded to Cloudinary successfully:', cloudinaryUrl);
 
           // Now, you can use cloudinaryUrl to send to your server or handle it as needed
 
@@ -271,23 +269,23 @@ const CreatePost = () => {
 
           
           // Upload image to your server
-          try {
-            const imgUpload = await axios.post(
-              `${VITE_URL}/api/upload`,
-              { imageUrl: cloudinaryUrl } // Send the Cloudinary URL to your server
-            );
+      //     try {
+      //       const imgUpload = await axios.post(
+      //         `${VITE_URL}/api/upload`,
+      //         { imageUrl: cloudinaryUrl } // Send the Cloudinary URL to your server
+      //       );
 
-            console.log('Image uploaded to custom server successfully:', imgUpload.data);
-          } catch (err) {
-            console.error('Error uploading to custom server:', err);
-          }
-        } catch (err) {
-          console.error('Error uploading to Cloudinary:', err);
-        }
-      } catch (err) {
-        console.error('Error handling image upload:', err);
-      }
-    }
+      //       console.log('Image uploaded to custom server successfully:', imgUpload.data);
+      //     } catch (err) {
+      //       console.error('Error uploading to custom server:', err);
+      //     }
+      //   } catch (err) {
+      //     console.error('Error uploading to Cloudinary:', err);
+      //   }
+      // } catch (err) {
+      //   console.error('Error handling image upload:', err);
+      // }
+    
 
 
 
