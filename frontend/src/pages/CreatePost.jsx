@@ -273,8 +273,9 @@ const CreatePost = () => {
         } catch (err) {
           console.error('Error uploading to Cloudinary:', err);
         }
+      } catch (err) {
+        console.error('Error handling image upload:', err);
       }
-        
     }
 
     // Upload post
@@ -290,6 +291,7 @@ const CreatePost = () => {
       console.error('Error creating post:', err);
     }
   };
+
 
   return (
     <div>
