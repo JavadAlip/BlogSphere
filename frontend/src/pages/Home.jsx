@@ -89,7 +89,7 @@ import Loader from '../components/Loader';
 import { UserContext } from '../context/UserContext';
 import Pagination from '../components/Pagination';
 
-import { VITE_URL,VITE_IMGFOLDER } from '../url';
+import { VITE_URL } from '../url';
 
 const Home = () => {
   const { search } = useLocation();
@@ -105,7 +105,7 @@ const Home = () => {
   const fetchPosts = async () => {
     setLoader(true);
     try {
-      const res = await axios.get(`${VITE_URL}/api/posts/` + search);
+      const res = await axios.get(VITE_URL+"/api/posts/" + search);
       setPosts(res.data);
       if (res.data.length === 0) {
         setNoResults(true);
