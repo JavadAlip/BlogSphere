@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* :root{
+    --body_background:white;
+    --body_color:black;
+    --link_color:navy;
+}
+
+[data-theme="dark"]{
+    --body_background:#282c34;
+    --body_color:white;
+    --link_color:cyan;
+} */
+
+
+
+:root {
+    --body_background: white;
+    --body_color: black;
+    --link_color: navy;
+}
+
+[data-theme="dark"] {
+    --body_background: #282c34;
+    --body_color: white;
+    --link_color: cyan;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--body_background); /* Use the CSS variables here */
+    color: var(--body_color);
+}
+
+.App-header {
+    background-color: var(--body_background); /* Use the CSS variables here */
+    color: var(--body_color);
+}
+
+.App-link {
+    color: var(--link_color);
+}

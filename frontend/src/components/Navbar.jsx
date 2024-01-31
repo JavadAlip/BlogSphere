@@ -3,10 +3,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaSearch, FaBars } from 'react-icons/fa';
 import Menu from './Menu';
 import { UserContext } from '../context/UserContext';
-import logo from '/Blog-logo.png';
+import logo from '/Blog-logo1.png';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { VITE_URL } from '../url';
+import DarkMode from './Darkmode';
 
 const Navbar = () => {
     const [prompt, setPrompt] = useState('');
@@ -75,6 +76,7 @@ const Navbar = () => {
                         type='text' />
                 </div>
             )}
+            <DarkMode/>
 
             <div className='md:flex hidden items-center justify-center space-x-2 md:space-x-4'>
                 {user ?

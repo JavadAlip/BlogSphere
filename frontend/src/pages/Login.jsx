@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
-import logo from '/Blog-logo.png';
+import logo from '/Blog-logo1.png';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
