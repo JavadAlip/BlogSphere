@@ -223,6 +223,10 @@ const CreatePost = () => {
     }
   };
 
+
+
+
+  
   return (
     <div>
       <Navbar />

@@ -164,8 +164,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Set the static folder for images
-const imageFolder = process.env.NODE_ENV === 'production' ? 'images' : path.join(__dirname, 'images');
-app.use('/images', express.static(imageFolder));
+// const imageFolder = process.env.NODE_ENV === 'production' ? 'images' : path.join(__dirname, 'images');
+app.use('/images', express.static("images"));
 
 app.use(
   cors({
@@ -200,7 +200,7 @@ connectDB().then(() => {
   // multer image upload
   const storage = multer.diskStorage({
     destination: (req, file, fn) => {
-      fn(null, imageFolder);
+      fn(null, "/images");
     },
     filename: (req, file, fn) => {
       fn(null, Date.now() + path.extname(file.originalname));
