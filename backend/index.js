@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
         cb(null, "images");
     },
     filename: (req, file, cb) => {
-        cb(null, file.originalname); // Use the original filename
+        cb(null, Date.now() + path.extname(file.originalname)) // Use the original filename
     },
 });
 const upload = multer({ storage: storage });
@@ -36,7 +36,7 @@ app.use(cors({
 app.options('*', cors()); // Enable preflight for all routes
 
 // Serving static images
-app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/images',express.static('images'));
 
 // Database
 const connectDB = async () => {
@@ -176,15 +176,6 @@ connectDB().then(() => {
 // app.use(express.json());
 // app.use(cookieParser());
 
-<<<<<<< HEAD
-// Set the static folder for images
-// const imageFolder = process.env.NODE_ENV === 'production' ? 'images' : path.join(__dirname, 'images');
-app.use('/images', express.static("images"));
-=======
-// // Set the static folder for images
-// // const imageFolder = process.env.NODE_ENV === 'production' ? 'images' : path.join(__dirname, 'images');
-// // app.use('/images', express.static(imageFolder));
->>>>>>> 5758c436f826c9f4c4d4a2bd2fbbf47e71db81be
 
 // // app.use('/images',express.static(path.join(__dirname,"/images")))
 
@@ -212,24 +203,6 @@ app.use('/images', express.static("images"));
 //     res.send('api connected');
 //   });
 
-<<<<<<< HEAD
-  // multer image upload
-  const storage = multer.diskStorage({
-    destination: (req, file, fn) => {
-      fn(null, "/images");
-    },
-    filename: (req, file, fn) => {
-      fn(null, Date.now() + path.extname(file.originalname));
-    },
-  });
-  
-=======
-//   // Routes
-//   app.use('/api/auth', authRoute);
-//   app.use('/api/users', userRoute);
-//   app.use('/api/posts', postRoute);
-//   app.use('/api/comments', commentRoute);
->>>>>>> 5758c436f826c9f4c4d4a2bd2fbbf47e71db81be
 
 //  // multer image upload
 // // const storage = multer.diskStorage({
