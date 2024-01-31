@@ -16,13 +16,13 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 
-// Multer image upload
+// Multer configuration
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "images");
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname)) // Use the original filename
+        cb(null, Date.now() + path.extname(file.originalname));
     },
 });
 const upload = multer({ storage: storage });
@@ -36,7 +36,7 @@ app.use(cors({
 app.options('*', cors()); // Enable preflight for all routes
 
 // Serving static images
-app.use('/images',express.static('images'));
+app.use('/images', express.static('images'));
 
 // Database
 const connectDB = async () => {
@@ -57,15 +57,16 @@ connectDB().then(() => {
         res.send('API connected');
     });
 
-    // Routes
+    // Routes and Middlewares
     app.use('/api/auth', authRoute);
     app.use('/api/users', userRoute);
     app.use('/api/posts', postRoute);
     app.use('/api/comments', commentRoute);
 
-    // Multer image upload endpoint
+    // Image upload endpoint
     app.post('/api/upload', upload.single("file"), (req, res) => {
-        res.status(200).json("Image has been uploaded successfully!");
+        const imagePath = `/images/${req.file.filename}`;
+        res.status(200).json({ imagePath });
     });
 
     // Error handling middleware
@@ -80,6 +81,13 @@ connectDB().then(() => {
         console.log(`App is running on port ${PORT}`);
     });
 });
+
+
+
+
+
+
+
 
 // const express = require('express');
 // const app = express();

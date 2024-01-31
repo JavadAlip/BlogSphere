@@ -36,7 +36,7 @@ const Navbar = () => {
                 const res = await axios.get(`${VITE_URL}/api/users/` + user._id);
                 setUsername(res.data.username);
                 // setPassword(res.data.password);
-                console.log("kittiye", user.data)
+                // console.log("kittiye", user.data)
             }
         } catch (err) {
             console.log(err);
