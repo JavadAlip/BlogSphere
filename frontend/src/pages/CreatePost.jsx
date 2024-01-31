@@ -387,6 +387,8 @@ const CreatePost = () => {
   const [cat, setCat] = useState('');
   const [cats, setCats] = useState([]);
   const [error, setError] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+
   const navigate = useNavigate();
 
   const deleteCategory = (i) => {
