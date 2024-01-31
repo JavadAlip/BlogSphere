@@ -38,7 +38,9 @@ app.use(cors({
 app.options('*', cors()); // Enable preflight for all routes
 
 // Serving static images
-app.use('/images', express.static('images'));
+// app.use('/images', express.static('images'));
+app.use('/images', express.static('backend/images'));
+
 
 // Database
 const connectDB = async () => {

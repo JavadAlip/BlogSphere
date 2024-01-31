@@ -432,11 +432,27 @@ const CreatePost = () => {
       // upload img
       try {
         const imgUpload = await axios.post(`${VITE_URL}/api/upload`, data);
-        console.log("Image upload response:",imgUpload.data);
+        console.log("Image upload response:", imgUpload.data);
+
+        // Update the state with the image URL
+        setImageUrl(`${VITE_URL}${imgUpload.data.imagePath}`);
       } catch (err) {
-        console.log("Error uploading image:",err);
+        console.log("Error uploading image:", err);
       }
     }
+
+    // if (file) {
+    //   const data = new FormData();
+    //   data.append('file', file);
+
+    //   // upload img
+    //   try {
+    //     const imgUpload = await axios.post(`${VITE_URL}/api/upload`, data);
+    //     console.log("Image upload response:",imgUpload.data);
+    //   } catch (err) {
+    //     console.log("Error uploading image:",err);
+    //   }
+    // }
 
     // upload post
     try {
@@ -458,6 +474,7 @@ const CreatePost = () => {
       <div className='px-6 md:px-[200px] mt-8'>
         <h1 className='font-bold mt-8 md:text-2xl text-xl '>Create a blog</h1>
         <form action='' className='w-full flex mt-4 flex-col space-y-4 md:space-y-8'>
+        {imageUrl && <img src={imageUrl} alt="Uploaded Image" />}
           <input
             onChange={(e) => setTitle(e.target.value)}
             className='px-4 py-2 outline-none  bg-gray-50 rounded-lg'
