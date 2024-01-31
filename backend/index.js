@@ -32,7 +32,9 @@ app.use(cors({
     credentials: true,
 }));
 
+
 // Handling Preflight OPTIONS Requests
+
 app.options('*', cors()); // Enable preflight for all routes
 
 // Serving static images
