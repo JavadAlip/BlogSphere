@@ -15,7 +15,7 @@
     --link_color:cyan;
 } */
 
-
+/* 
 
 :root {
     --body_background: white;
@@ -32,14 +32,14 @@
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--body_background); /* Use the CSS variables here */
-    color: var(--body_color);
+    /* color: var(--body_color);
 }
 
 .App-header {
     background-color: var(--body_background); /* Use the CSS variables here */
-    color: var(--body_color);
+    /* color: var(--body_color);
 }
 
 .App-link {
     color: var(--link_color);
-}
+} */ 
