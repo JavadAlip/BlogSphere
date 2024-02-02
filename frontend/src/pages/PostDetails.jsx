@@ -1,3 +1,7 @@
+
+
+
+
 // import React, { useContext, useEffect, useState } from 'react';
 // import Navbar from '../components/Navbar';
 // import Footer from '../components/Footer';
@@ -9,8 +13,7 @@
 // import { UserContext } from '../context/UserContext';
 // import Loader from '../components/Loader';
 
-
-// import { VITE_URL,VITE_IMGFOLDER } from '../url';
+// import { VITE_URL } from '../url';
 
 // const PostDetails = () => {
 //   const postId = useParams().id;
@@ -24,7 +27,7 @@
 //   const fetchPost = async () => {
 //     setLoader(true);
 //     try {
-//       const res = await axios.get(`${VITE_URL}/api/posts/` + postId);
+//       const res = await axios.get(VITE_URL + '/api/posts/' + postId);
 //       setPost(res.data);
 //       setLoader(false);
 //       console.log("image error undo nokkan", res.data)
@@ -39,7 +42,7 @@
 //     const confirmed = window.confirm("Do you want to delete your blog?")
 //     if (confirmed) {
 //       try {
-//         const res = await axios.delete(`${VITE_URL}/api/posts/` + postId, {
+//         const res = await axios.delete(VITE_URL + '/api/posts/' + postId, {
 //           withCredentials: true,
 //         });
 //         console.log(res.data);
@@ -58,7 +61,7 @@
 
 //   const fetchPostComments = async () => {
 //     try {
-//       const res = await axios.get(`${VITE_URL}/api/comments/post/` + postId);
+//       const res = await axios.get(VITE_URL + '/api/comments/post/' + postId);
 //       setComments(res.data);
 //     } catch (err) {
 //       console.log(err);
@@ -73,7 +76,7 @@
 //     e.preventDefault();
 //     try {
 //       const res = await axios.post(
-//         `${VITE_URL}/api/comments/create`,
+//         VITE_URL + '/api/comments/create',
 //         {
 //           comment: comment,
 //           author: user.username,
@@ -93,14 +96,8 @@
 //   };
 
 //   console.log('vaadey .........pls')
-//   // const imgSrc = `${import.meta.env.VITE_IMGFOLDER}${encodeURIComponent(post.photo)}`;
-//   // const imgSrc = `${import.meta.env.IMGFOLDER || '/fallback-folder/' }${encodeURIComponent(post.photo)}`;
-
-//   console.log("Post:", post);
-//   console.log("IMGFOLDER:", VITE_IMGFOLDER);
-//   // console.log("Encoded Photo:", encodeURIComponent(post.photo));
-//   // console.log("Image Source nokkan:", imgSrc);
-
+//   // Construct Cloudinary image URL only if post.photo is defined
+//   const cloudinaryUrl = post.photo ? `https://res.cloudinary.com/doue07abb/image/upload/${post.photo}` : '';
 
 //   return (
 //     <div>
@@ -129,9 +126,7 @@
 //               <p>-{new Date(post.updatedAt).toString().slice(15, 21)}</p>
 //             </div>
 //           </div>
-//           <img  src={VITE_IMGFOLDER + post.photo} alt='' className='w-full mx-auto md:mt-2 mt-4 rounded-lg' />
-          
-//           {/* <img src={`${import.meta.env.IMGFOLDER}${post.photo}`} alt='' className='w-full mx-auto md:mt-2 mt-4 rounded-lg' /> */}
+//           {cloudinaryUrl && <img src={cloudinaryUrl} alt='' className='w-full mx-auto md:mt-2 mt-4 rounded-lg' />}
 //           <p className='mx-auto mt-4 md:mt-4 '>{post.description}</p>
 //           <div className='flex items-center mt-4 space-x-4 font-semibold'>
 //             <p>Categories :</p>
@@ -173,11 +168,6 @@
 
 
 
-
-
-
-
-// implement base64
 
 import React, { useContext, useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
