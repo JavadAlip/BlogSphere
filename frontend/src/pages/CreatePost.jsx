@@ -268,7 +268,7 @@ const CreatePost = () => {
     // }
 
 // upload image via base64
-fetch(`${VITE_URL}/api/upload-image`,{
+fetch(`${VITE_URL}/upload-image`,{
   method:"post",
   crossDomain:true,
   headers:{
