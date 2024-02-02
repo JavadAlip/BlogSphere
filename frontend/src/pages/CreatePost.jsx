@@ -259,13 +259,13 @@ const CreatePost = () => {
     // }
 
     // upload post
-    // try {
-    //   const res = await axios.post(`${VITE_URL}/api/posts/create`, post, { withCredentials: true });
-    //   navigate('/posts/post/' + res.data._id);
-    //   console.log(res.data);
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    try {
+      const res = await axios.post(`${VITE_URL}/api/posts/create`, post, { withCredentials: true });
+      navigate('/posts/post/' + res.data._id);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
 
 // upload image via base64
 fetch(`${VITE_URL}/upload-image`,{
