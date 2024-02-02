@@ -72,18 +72,18 @@ const CreatePost = () => {
       }
     }
 
-    // if (file) {
-    //   const data = new FormData();
-    //   data.append('file', file);
+    if (file) {
+      const data = new FormData();
+      data.append('file', file);
 
-    //   // upload img
-    //   try {
-    //     const imgUpload = await axios.post(`${VITE_URL}/api/upload`, data);
-    //     console.log("Image upload response:",imgUpload.data);
-    //   } catch (err) {
-    //     console.log("Error uploading image:",err);
-    //   }
-    // }
+      // upload img
+      try {
+        const imgUpload = await axios.post(`${VITE_URL}/api/upload`, data);
+        console.log("Image upload response:",imgUpload.data);
+      } catch (err) {
+        console.log("Error uploading image:",err);
+      }
+    }
 
     // upload post
     try {
