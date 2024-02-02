@@ -110,30 +110,20 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 
-// Multer configuration
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, "images");
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, Date.now() + path.extname(file.originalname));
-//     },
-// });
-// const upload = multer({ storage: storage });
 
 app.use(cors({
     origin: "https://blogssphere.netlify.app",
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Add the HTTP methods you need
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 
-// Handling Preflight OPTIONS Requests
+
 
 app.options('*', cors()); // Enable preflight for all routes
 
-// Serving static images
-// app.use('/images', express.static('images'));
-// app.use('/images', express.static('backend/images'));
+
 
 
 const Images=mongoose.model("Post")
@@ -162,17 +152,6 @@ connectDB().then(() => {
     app.use('/api/posts', postRoute);
     app.use('/api/comments', commentRoute);
 
-    // Image upload endpoint
-    // app.post('/api/upload', upload.single("file"), (req, res) => {
-    //     const imagePath = `/images/${req.file.filename}`;
-    //     res.status(200).json({ imagePath });
-    // });
-
-    // // Error handling middleware
-    // app.use((err, req, res, next) => {
-    //     console.error(err.stack);
-    //     res.status(500).send('Something went wrong!');
-    // });
 
     // Start the server
     const PORT = process.env.PORT || 10000;

@@ -229,35 +229,7 @@ const CreatePost = () => {
       categories: cats,
     };
 
-    // if (file) {
-    //   const data = new FormData();
-    //   data.append('file', file);
-
-      // upload img
-      // try {
-      //   const imgUpload = await axios.post(`${VITE_URL}/api/upload`, data);
-      //   console.log("Image upload response:", imgUpload.data);
-
-      //   // Update the state with the image URL
-      //   setImageUrl(`${VITE_URL}${imgUpload.data.imagePath}`);
-      // } catch (err) {
-      //   console.log("Error uploading image:", err);
-      // }
-    // }
-
-    // if (file) {
-    //   const data = new FormData();
-    //   data.append('file', file);
-
-    //   // upload img
-    //   try {
-    //     const imgUpload = await axios.post(`${VITE_URL}/api/upload`, data);
-    //     console.log("Image upload response:",imgUpload.data);
-    //   } catch (err) {
-    //     console.log("Error uploading image:",err);
-    //   }
-    // }
-
+ 
     // upload post
     try {
       const res = await axios.post(`${VITE_URL}/api/posts/create`, post, { withCredentials: true });
@@ -275,10 +247,12 @@ fetch(`${VITE_URL}/upload-image`,{
     "content-Type":"application/json",
     Accept:"application/json",
     "Access-Control-Allow-Origin":"*",
+    
   },
   body:JSON.stringify({
     base64:image
-  })
+  }),
+  credentials: 'include',
 }).then((res)=> res.json()).then((data)=>console.log(data))
 
   };
