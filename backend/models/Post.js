@@ -11,7 +11,7 @@ const PostSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    photo: {
+    image: {
         type: String,
         // required: false,
     },
