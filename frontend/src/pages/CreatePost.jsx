@@ -227,6 +227,7 @@ const CreatePost = () => {
       username: user.username,
       userId: user._id,
       categories: cats,
+      image: image,
     };
 
  
