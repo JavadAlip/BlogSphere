@@ -466,9 +466,6 @@ const CreatePost = () => {
     }
   };
 
-
-
-
   
   return (
     <div>
